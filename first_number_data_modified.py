@@ -8,6 +8,15 @@
 # ['SJO', 'MCO', ['ELP', 'HOU', 'AUS',], 'ATL', 'LGA', 'MDW', 'SEA', ['OAK', 'LAS']]
 # ['DEN', 'MSY', 'PDX']
 
+# ATL to LGA Route
+# ATL -> LGA -> MDW -> BOS -> BWI -> SEA -> OAK -> RNO
+# 60  -> 64  -> 78  -> 46 ->  95  -> 53  -> OAK -> RNO
+# 396 -> [OAK, LAS]
+
+# ATL -> LGA -> MDW -> DCA -> MCO -> MSY -> SEA -> [OAK, LAS]
+# 60  -> 64  -> 78  -> 67  -> 59  -> 90  -> 53  -> [OAK, LAS]
+# 471 -> [OAK, LAS]
+
 
 
 # ROUTE 1.1
@@ -27,9 +36,9 @@
 # ROUTE 1.3
 # SJO -> MCO -> MSY -> AUS -> ELP -> DEN ->
 # 206  -> 59  -> 60  -> 00  -> 00  -> 00 -> 00  -> 00  -> 00  -> OAK -> RNO
-# ['ATL', '', 'BOS', 'BUF', 'BWI', 'CUN', 'DAL', 'DCA', 'DEN', 'ELP', 'HNL', 'HOU', 'IAD', 'IAH', 'JAX', 'LAS', 'LGA', 'MBJ', 'MDW', 'MSY', 'OAK', 'ORD', 'PDX', 'PHL', 'PHX', 'RNO', 'SAN', 'SEA', 'SFO', 'SJC', 'SMF']
-# ['', '', ['ELP', 'HOU', '',], 'ATL', 'LGA', 'MDW', 'SEA', ['OAK', 'LAS']]
-# ['DEN', '', 'PDX']
+# ['ATL', '', 'BOS', 'BUF', 'BWI', 'CUN', 'DAL', 'DCA', '', '', 'HNL', 'HOU', 'IAD', 'IAH', 'JAX', 'LAS', 'LGA', 'MBJ', 'MDW', 'MSY', 'OAK', 'ORD', 'PDX', 'PHL', 'PHX', 'RNO', 'SAN', 'SEA', 'SFO', 'SJC', 'SMF']
+# ['', '', ['', 'HOU', '',], 'ATL', 'LGA', 'MDW', 'SEA', ['OAK', 'LAS']]
+# ['', '', 'PDX']
 
 # ROUTE 2.1
 # 725 + OAK -> RNO
