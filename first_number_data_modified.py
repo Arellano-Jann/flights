@@ -1,4 +1,16 @@
-airport_data = {
+# DEPARTURES
+# ['OAK', 'SJO', 'MCO', ['ELP', 'HOU', 'AUS',], 'ATL', 'LGA', 'MDW', 'BWI', 'DEN', 'SEA', 'PDX', 'CUN', 'MBJ', 'PUJ']
+
+# ALL AIRPORTS
+# ['ATL', 'AUS', 'BOS', 'BUF', 'BWI', 'CUN', 'DAL', 'DCA', 'DEN', 'ELP', 'HNL', 'HOU', 'IAD', 'IAH', 'JAX', 'LAS', 'LGA', 'MBJ', 'MCO', 'MDW', 'MSY', 'OAK', 'ORD', 'PDX', 'PHL', 'PHX', 'RNO', 'SAN', 'SEA', 'SFO', 'SJC', 'SJO', 'SMF']
+
+# ROUTE 1
+# SJO -> MCO
+# ['ATL', 'AUS', 'BOS', 'BUF', 'BWI', 'CUN', 'DAL', 'DCA', 'DEN', 'ELP', 'HNL', 'HOU', 'IAD', 'IAH', 'JAX', 'LAS', 'LGA', 'MBJ', 'MDW', 'MSY', 'OAK', 'ORD', 'PDX', 'PHL', 'PHX', 'RNO', 'SAN', 'SEA', 'SFO', 'SJC', 'SMF']
+
+# SJO -> HOU -> ATL -> LGA -> MDW ->
+# [ 'AUS', 'BOS', 'BUF', 'BWI', 'CUN', 'DAL', 'DCA', 'DEN', 'ELP', 'HNL', 'IAD', 'IAH', 'JAX', 'LAS', 'MBJ', 'MCO', 'MDW', 'MSY', 'OAK', 'ORD', 'PDX', 'PHL', 'PHX', 'RNO', 'SAN', 'SEA', 'SFO', 'SJC', 'SMF']
+airport_data = { 
     "OAK": {
         # "SJO": 347,
         "LGA": 95,
@@ -231,13 +243,13 @@ airport_data = {
         # "MDW": 218,
         # "HOU": 235,
     },
-    "PUJ": {
-        "MCO": 220,
-        "BWI": 217,
-        "MDW": 211,
-        "HOU": 227,
-        # "DEN": 257,
-    },
+    # "PUJ": {
+    #     "MCO": 220,
+    #     "BWI": 217,
+    #     "MDW": 211,
+    #     "HOU": 227,
+    #     # "DEN": 257,
+    # },
     "SJO": {
         "MCO": 206,
         "BWI": 211,
