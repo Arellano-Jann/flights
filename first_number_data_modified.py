@@ -11,8 +11,10 @@
 
 
 # ROUTE 1
-# SJO -> MCO
+# SJO -> MCO -> AUS
 # ['ATL', 'AUS', 'BOS', 'BUF', 'BWI', 'CUN', 'DAL', 'DCA', 'DEN', 'ELP', 'HNL', 'HOU', 'IAD', 'IAH', 'JAX', 'LAS', 'LGA', 'MBJ', 'MDW', 'MSY', 'OAK', 'ORD', 'PDX', 'PHL', 'PHX', 'RNO', 'SAN', 'SEA', 'SFO', 'SJC', 'SMF']
+# ['', '', ['ELP', 'HOU', 'AUS',], 'ATL', 'LGA', 'MDW', 'SEA', ['OAK', 'LAS']]
+# ['DEN', 'MSY', 'PDX']
 
 # ROUTE 2.1
 # 725 + OAK -> RNO
@@ -26,9 +28,9 @@
 # 747 + OAK -> RNO
 # 199  -> 77  -> 60  -> 64  -> 78  -> 67  -> 59  -> 90  -> 53  -> [OAK, LAS]
 # SJO  -> HOU -> ATL -> LGA -> MDW -> DCA -> MCO -> MSY -> SEA -> [OAK, LAS]
-# ['AUS', 'BOS', 'BUF', 'BWI', 'CUN', 'DAL', 'DEN', 'ELP', 'HNL', 'IAD', 'IAH', 'JAX', 'LAS', 'MBJ', '', '', 'OAK', 'ORD', 'PDX', 'PHL', 'PHX', 'RNO', 'SAN', 'SEA', 'SFO', 'SJC', 'SMF']
-# [['ELP', 'AUS'], '', ['OAK', 'LAS']]
-# ['DEN', '', 'PDX']
+# ['AUS', 'BOS', 'BUF', 'BWI', 'CUN', 'DAL', 'DEN', 'ELP', 'HNL', 'IAD', 'IAH', 'JAX', 'MBJ', 'ORD', 'PDX', 'PHL', 'PHX', 'RNO', 'SAN', 'SFO', 'SJC', 'SMF']
+# [['ELP', 'AUS']]
+# ['DEN', 'PDX']
 
 airport_data = { 
     "OAK": {
