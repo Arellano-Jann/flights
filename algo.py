@@ -1,6 +1,11 @@
 import numpy as np
 from first_number_data_modified import airport_data
 
+# import json
+# f = open('first_number_data_modified.json')
+# airport_data = json.load(f)
+# f.close()
+
 
 # Extract unique airports from all dictionaries
 all_airports = set()
@@ -11,11 +16,11 @@ for distances in airport_data:
 
 # Convert the set of airports to a sorted list
 airports = sorted(list(all_airports))
-print(all_airports)
-print(airports)
-print('adk', airport_data.keys())
-print(airport_data["SJO"])
-print(airport_data["SJO"]["DEN"])
+# print(all_airports)
+# print(airports)
+# print('adk', airport_data.keys())
+# print(airport_data["SJO"])
+# print(airport_data["SJO"]["DEN"])
 
 # Create a matrix filled with NaN values
 distance_matrix = np.full((len(airports), len(airports)), np.nan)
@@ -49,15 +54,30 @@ for i, source in enumerate(airports):
                 distance_matrix[i, j] = airport_data.get(source, {}).get(destination, np.nan)
             if (destination in airport_data.keys() and source in airport_data[destination]):
                 distance_matrix[j, i] = airport_data.get(destination, {}).get(source, np.nan)
-            if (distance_matrix[i, j] == np.nan): distance_matrix[i, j] = distance_matrix[j, i]
-            if (distance_matrix[j, i] == np.nan): distance_matrix[j, i] = distance_matrix[i, j]
+
+# Backfill    
+for i in range(len(airports)):
+    for j in range(len(airports)):
+        # print(np.isnan(distance_matrix[i, j]))
+        if (np.isnan(distance_matrix[i, j])): 
+            # print('ij',distance_matrix[i, j],'ji',distance_matrix[j, i])
+            distance_matrix[i, j] = distance_matrix[j, i]
+        if (np.isnan(distance_matrix[j, i])): 
+            distance_matrix[j, i] = distance_matrix[i, j]
                 
 
 import pandas
 df = pandas.DataFrame(distance_matrix, columns=airports, index=airports)
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+plt.figure(figsize = (12,12)) # size of plot
+heatmap = sns.heatmap(df, annot=True)
+heatmap.get_figure().savefig('output/adj_matrix_heatmap')
+
 df = df.fillna('-')
 print(df)
-df.to_csv('output.csv')
+df.to_csv('output/adj_matrix.csv')
 
 
 
@@ -86,7 +106,7 @@ adjacency_list = dataframe_to_adjacency_list(df)
 
 # Output the adjacency list
 import json
-with open('data.json', 'w', encoding='utf-8') as f:
+with open('output/adj_list.json', 'w', encoding='utf-8') as f:
     json.dump(adjacency_list, f, ensure_ascii=False, indent=4)
     
     
@@ -94,6 +114,7 @@ with open('data.json', 'w', encoding='utf-8') as f:
     
     
 # Find the n least expensive airports to fly from a destination airport to source airport
+# Credit to Lyssie
 MAX_PRICE_DIFFERENCE = 10 # threshold
 # get set of all the children
 airport_parents = set(airport_data.keys()) # DEPARTURE
@@ -124,27 +145,8 @@ for child in airport_children:
 print(cutoff_airport_connections)
 
 import json
-with open('FROM.json', 'w', encoding='utf-8') as f:
+with open('output/least_expensive_airports.json', 'w', encoding='utf-8') as f:
     json.dump(cutoff_airport_connections, f, ensure_ascii=False, indent=4)
-
-
-
-
-def find_minimum_values(data, threshold):
-    with open("minimum_output.txt", "w") as file:
-        for source, destinations in data.items():
-            min_value = min(destinations.values(), default=999)
-            if min_value <= threshold:
-                file.write(f"{source} -> {min(destinations, key=destinations.get, default=999)}: {min_value}\n")
-                for dest, value in destinations.items():
-                    if value == min_value:
-                        file.write(f"{source} -> {dest}: {value}\n")
-
-# Set the threshold for minimum values
-threshold_value = 60
-
-# Call the function with your airport_data and threshold
-find_minimum_values(adjacency_list, threshold_value)
 
 
 

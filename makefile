@@ -2,7 +2,7 @@ all:
 	python3 algo.py
 
 dependencies:
-	pip3 install numpy pandas matplotlib networkx
+	pip3 install numpy pandas matplotlib networkx seaborn
 
 fresh:
 	sudo apt-get update
