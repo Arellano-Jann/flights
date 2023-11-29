@@ -1,39 +1,52 @@
 {
-    "SEA": {
-        "OAK": 53,
-        "DEN": 60
+    "IAH": {
+        "DEN": 89,
+        "MDW": 89,
+        "MCO": 89,
+        "ELP": 91
     },
-    "MBJ": {
-        "MCO": 129
+    "LGA": {
+        "ATL": 60,
+        "MDW": 64
     },
-    "IAD": {
-        "DEN": 92
+    "ATL": {
+        "BWI": 59,
+        "DEN": 67
     },
-    "SMF": {
-        "PDX": 79,
-        "DEN": 85,
-        "AUS": 89
+    "PHL": {
+        "ATL": 87,
+        "MDW": 89,
+        "MCO": 89
     },
-    "BWI": {
-        "ATL": 79,
-        "HOU": 89
+    "BUF": {
+        "DEN": 83
     },
-    "JAX": {
-        "LGA": 88,
-        "ATL": 92
-    },
-    "CUN": {
-        "HOU": 95
-    },
-    "SJC": {
-        "PDX": 53
+    "MCO": {
+        "CUN": 160
     },
     "MSY": {
         "MCO": 59,
         "AUS": 60
     },
-    "ORD": {
-        "DEN": 66
+    "SJC": {
+        "PDX": 53
+    },
+    "LAS": {
+        "SEA": 53
+    },
+    "SEA": {
+        "OAK": 53,
+        "DEN": 60
+    },
+    "ELP": {
+        "AUS": 60
+    },
+    "DAL": {
+        "LGA": 74,
+        "MDW": 83
+    },
+    "MDW": {
+        "SEA": 53
     },
     "HOU": {
         "ELP": 81,
@@ -42,79 +55,66 @@
         "MCO": 88,
         "DEN": 89
     },
-    "BUF": {
-        "DEN": 83
-    },
-    "ELP": {
-        "AUS": 60
+    "SMF": {
+        "PDX": 79,
+        "DEN": 85,
+        "AUS": 89
     },
     "HNL": {
         "OAK": 119
+    },
+    "CUN": {
+        "HOU": 95
+    },
+    "RNO": {
+        "DEN": 85
+    },
+    "OAK": {
+        "PDX": 40
+    },
+    "DCA": {
+        "MCO": 67
     },
     "DEN": {
         "PDX": 53,
         "SEA": 60
     },
-    "MDW": {
-        "SEA": 53
+    "SAN": {
+        "AUS": 67,
+        "PDX": 77
     },
-    "MCO": {
-        "CUN": 160
+    "ORD": {
+        "DEN": 66
     },
     "AUS": {
         "MCO": 53,
         "ELP": 60
     },
-    "OAK": {
-        "PDX": 40
+    "IAD": {
+        "DEN": 92
     },
-    "LAS": {
-        "SEA": 53
+    "BWI": {
+        "ATL": 79,
+        "HOU": 89
     },
-    "RNO": {
-        "DEN": 85
+    "SFO": {
+        "DEN": 91
     },
-    "BOS": {
-        "BWI": 46
+    "MBJ": {
+        "MCO": 129
     },
     "PHX": {
         "PDX": 60,
         "ELP": 67
     },
-    "LGA": {
-        "ATL": 60,
-        "MDW": 64
-    },
-    "DAL": {
-        "LGA": 74,
-        "MDW": 83
-    },
-    "ATL": {
-        "BWI": 59,
-        "DEN": 67
-    },
-    "SFO": {
-        "DEN": 91
-    },
-    "SAN": {
-        "AUS": 67,
-        "PDX": 77
-    },
     "PDX": {
         "DEN": 53
     },
-    "IAH": {
-        "DEN": 89,
-        "MDW": 89,
-        "MCO": 89,
-        "ELP": 91
+    "BOS": {
+        "BWI": 46
     },
-    "PHL": {
-        "ATL": 87,
-        "MDW": 89,
-        "MCO": 89
-    },
-    "DCA": {
-        "MCO": 67
+    "JAX": {
+        "LGA": 88,
+        "ATL": 92
     }
 }

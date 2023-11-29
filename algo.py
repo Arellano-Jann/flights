@@ -72,7 +72,7 @@ df = pandas.DataFrame(distance_matrix, columns=airports, index=airports)
 import seaborn as sns
 import matplotlib.pyplot as plt
 plt.figure(figsize = (12,12)) # size of plot
-heatmap = sns.heatmap(df, annot=True)
+heatmap = sns.heatmap(df, annot=True, linewidths=1, linecolor='black')
 heatmap.get_figure().savefig('output/adj_matrix_heatmap')
 
 df = df.fillna('-')
