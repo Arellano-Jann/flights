@@ -28,7 +28,7 @@ flight_data = read_flight_data(file_path)
 # print(flight_data)
 
 import json
-with open('output/flight_data.json', 'w', encoding='utf-8') as f:
+with open('output/source_flight_data.json', 'w', encoding='utf-8') as f:
     json.dump(flight_data, f, ensure_ascii=False, indent=4)
     
     
@@ -187,7 +187,8 @@ print(cutoff_airport_connections)
 
 import json
 with open('output/least_expensive_airports.json', 'w', encoding='utf-8') as f:
-    json.dump(cutoff_airport_connections, f, ensure_ascii=False, indent=4)
+    # json.dump(dict(sorted(cutoff_airport_connections.items())), f, ensure_ascii=False, indent=4)
+    json.dump(dict(sorted(cutoff_airport_connections.items())), f, ensure_ascii=False, indent=4)
 
 
 
