@@ -13,73 +13,134 @@ REQUIRED
 # BROKEN UP
 
 ATL to LGA Route[
-    BOS to SEA Short Route
-    396 -> [OAK, LAS]
-    60  -> 64  -> 78  -> 46 ->  95  -> 53  -> OAK -> RNO
+    DEN to PDX Shortest Route: 5 // 49
+----248 -> [OAK, LAS]
+    60  -> 95  -> 53  -> 40  -> OAK -> RNO
+    ATL -> LGA -> DEN -> PDX -> OAK -> RNO
+
+    DEN to SEA Shortest Route: 5 // 53
+----268 -> [OAK, LAS]
+    60  -> 95  -> 60  -> 53  -> OAK -> RNO
+    ATL -> LGA -> DEN -> SEA -> OAK -> RNO
+
+    BOS to SEA Short Route: 7 // 56
+----378 -> [OAK, LAS]
+    60  -> 64  -> 60  -> 46 ->  95  -> 53  -> OAK -> RNO
     ATL -> LGA -> MDW -> BOS -> BWI -> SEA -> OAK -> RNO
 
-    DCA to SEA Long Route
-    471 -> [OAK, LAS]
+    DCA to SEA Long Route: 8 // 58
+----471 -> [OAK, LAS]
     60  -> 64  -> 78  -> 67  -> 59  -> 90  -> 53  -> [OAK, LAS]
     ATL -> LGA -> MDW -> DCA -> MCO -> MSY -> SEA -> [OAK, LAS]
 ]
 
-LGA to ATL Route[
-    347 -> OAK -> RNO
+LGA to ATL Route: 6 // 57[
+----347 -> OAK -> RNO
     60  -> 79  -> 60  -> 46  -> 102 -> OAK -> RNO
     LGA -> ATL -> MDW -> BOS -> BWI -> OAK -> RNO
 
 ]
 
-MDW -> BWI Short Route
-MDW -> BOS -> BWI -> OAK 
-60  -> 46  -> 102 -> OAK -> RNO
-208 -> OAK -> RNO
+MDW -> BWI Route: 4 // 52[
+----208 -> OAK -> RNO
+    60  -> 46  -> 102 -> OAK -> RNO
+    MDW -> BOS -> BWI -> OAK -> RNO
+]
 
 END
 ---------------------------------------
 START
 
 SJO to MCO Route[
-    AUS to MDW Route
-    391 -> ATL to LGA Routes
+    AUS to MDW Route: 5 // 78
+----391 -> ATL to LGA Routes
     206 -> 59  -> 66  ->  60 -> 79  -> ATL to LGA Routes
     SJO -> MCO -> AUS -> BOS -> MDW -> ATL to LGA Routes
 
-    AUS to MDW Route
-    455 -> LGA to ATL Routes
-    206 -> 59  -> 66  ->  60 ->  64 -> LGA to ATL Routes
-    SJO -> MCO -> AUS -> BOS -> MDW -> LGA to ATL Routes
-
-    AUS to BWI Route
-    436 -> ATL to LGA Routes
+    AUS to BWI Route: 5 // 87
+----436 -> ATL to LGA Routes
     206 -> 59  -> 66  ->  46 -> 59  -> ATL to LGA Routes
     SJO -> MCO -> AUS -> BOS -> BWI -> ATL to LGA Routes
 
-    AUS to BWI Route
-    461 -> ATL to LGA Routes
+    AUS to MDW Route: 5 // 91
+----455 -> LGA to ATL Routes
+    206 -> 59  -> 66  ->  60 ->  64 -> LGA to ATL Routes
+    SJO -> MCO -> AUS -> BOS -> MDW -> LGA to ATL Routes
+
+    AUS to BWI Route: 5 // 92
+----461 -> ATL to LGA Routes
     206 -> 59  -> 66  ->  46 -> 84  -> LGA to ATL Routes
     SJO -> MCO -> AUS -> BOS -> BWI -> LGA to ATL Routes
 
-    MSY to AUS Short Route
-    406 -> ATL to LGA Routes
+    MSY to AUS Short Route: 4 // 101
+----406 -> ATL to LGA Routes
     206 -> 59  -> 60  ->  81 -> ATL to LGA Routes
     SJO -> MCO -> MSY -> AUS -> ATL to LGA Routes
 
-    MSY to DEN Long Route
-    537 -> LGA to ATL Routes
+    MSY to DEN Long Route: 6 // 89
+----537 -> LGA to ATL Routes
     206 -> 59  -> 60  -> 60  -> 81  -> 71  -> LGA to ATL Routes
     SJO -> MCO -> MSY -> AUS -> ELP -> DEN -> LGA to ATL Routes
 ]
 
-SJO to ATL Route
-336 -> LGA to ATL Routes
-199 -> 77  -> 60  -> LGA to ATL Routes
-SJO -> HOU -> ATL -> LGA to ATL Routes
-
+SJO to ATL Route: 3 // 112[
+----336 -> LGA to ATL Routes
+    199 -> 77  -> 60  -> LGA to ATL Routes
+    SJO -> HOU -> ATL -> LGA to ATL Routes
+]
 -------------
 
 # ROUTE OPTIONS
+    # of Destinations // Avg Price Per Destination
+    Higher is better // Lower is better
+
+    AUS to MDW Route: 10/11/2 // 78/78
+----787/862 = 391 + 378/471 -> ATL to LGA Routes
+    SJO -> MCO -> AUS -> BOS -> MDW -> ATL to LGA Routes
+    BOS and MDW are doubles
+    Missing 6: ELP HOU LAS DEN MSY PDX
+
+    AUS to MDW Route: 10/11/2 // 78/78
+----787/862 = 391 + 378/471 -> ATL to LGA Routes
+    SJO -> MCO -> AUS -> BOS -> MDW -> ATL to LGA Routes
+----Missing 6: ELP HOU LAS DEN MSY PDX
+
+    MSY to AUS Short Route: 11/12 // 72/73
+----802/877 = 406 + 378/471 -> ATL to LGA Routes
+    SJO -> MCO -> MSY -> AUS -> ATL to LGA Routes
+    Missing 5: ELP HOU LAS DEN PDX
+
+    AUS to BWI Route: 12/13 // 69/69
+----832/907 = 436 + 378/471 -> ATL to LGA Routes
+    SJO -> MCO -> AUS -> BOS -> BWI -> ATL to LGA Routes
+    Missing 6: ELP HOU LAS DEN MSY PDX
+
+    SJO to ATL Route: 9/10 // 81/80
+----732/807 = 336 + 378/471 -> ATL to LGA Routes
+    SJO -> HOU -> ATL to LGA Routes
+    Missing 6: MCO ELP AUS DEN MSY PDX
+    
+    AUS to MDW Route: 11 // 72
+----802 = 455 + 347 -> LGA to ATL Routes
+    SJO -> MCO -> AUS -> BOS -> MDW -> | LGA -> ATL -> MDW -> BOS -> BWI -> OAK -> RNO
+    BOS and MDW are doubles
+    Missing 7: ELP HOU SEA LAS DEN MSY PDX
+
+    AUS to BWI Route: 11 // 73
+----808 = 461 + 347 -> LGA to ATL Routes
+    SJO -> MCO -> AUS -> BOS -> BWI -> | LGA -> ATL -> MDW -> BOS -> BWI -> OAK -> RNO
+    BOS and BWI are doubles
+    Missing 7: ELP HOU SEA LAS DEN MSY PDX
+
+    MSY to DEN Long Route: 12 // 73
+----884 = 537 + 347 -> LGA to ATL Routes
+    SJO -> MCO -> MSY -> AUS -> ELP -> DEN -> | LGA -> ATL -> MDW -> BOS -> BWI -> OAK -> RNO
+    Missing 4: HOU SEA LAS PDX
+
+
+
+
+------
 
 ROUTE 1.0
 391 + OAK -> RNO
@@ -125,7 +186,7 @@ SJO -> MCO -> MSY -> AUS -> ELP -> DEN -> LGA -> ATL -> MDW -> BOS -> BWI -> OAK
 ROUTE 2.1
 725 + OAK -> RNO
 199  -> 77  -> 60  -> 64  -> 78  -> 46 -> 95  -> 53  -> OAK -> RNO
-SJO -> HOU -> ATL -> LGA -> MDW -> BOS -> BWI -> SEA -> OAK -> RNO
+SJO  -> HOU -> ATL -> LGA -> MDW -> BOS -> BWI -> SEA -> OAK -> RNO
 ['AUS', 'BUF', 'CUN', 'DAL', 'DCA', 'DEN', 'ELP', 'HNL', 'IAD', 'IAH', 'JAX', 'LAS', 'MBJ', 'MCO', 'MSY', 'ORD', 'PDX', 'PHL', 'PHX', 'SAN', 'SFO', 'SJC', 'SMF']
 ['MCO', ['ELP', 'AUS',], ['LAS']]
 ['DEN', 'MSY', 'PDX']
