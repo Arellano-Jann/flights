@@ -49,6 +49,9 @@ for i, source in enumerate(airports):
                 distance_matrix[i, j] = airport_data.get(source, {}).get(destination, np.nan)
             if (destination in airport_data.keys() and source in airport_data[destination]):
                 distance_matrix[j, i] = airport_data.get(destination, {}).get(source, np.nan)
+            if (distance_matrix[i, j] == np.nan): distance_matrix[i, j] = distance_matrix[j, i]
+            if (distance_matrix[j, i] == np.nan): distance_matrix[j, i] = distance_matrix[i, j]
+                
 
 import pandas
 df = pandas.DataFrame(distance_matrix, columns=airports, index=airports)
