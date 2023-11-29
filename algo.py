@@ -88,7 +88,44 @@ adjacency_list = dataframe_to_adjacency_list(df)
 import json
 with open('data.json', 'w', encoding='utf-8') as f:
     json.dump(adjacency_list, f, ensure_ascii=False, indent=4)
+    
+    
+    
+    
+    
+# Find the n least expensive airports to fly from a destination airport to source airport
+MAX_PRICE_DIFFERENCE = 10 # threshold
+# get set of all the children
+airport_parents = set(airport_data.keys()) # DEPARTURE
+airport_children = set() # ARRIVAL
+for parent in airport_parents:
+    #print(set(airport_data[parent]))
+    airport_children.update(set(airport_data[parent]))
+# for each of the child keys
+all_airport_connections = {}
+cutoff_airport_connections = {}
+for child in airport_children:
+    # store (parent, int) tuples
+    airport_connections = []
+    for parent in airport_parents:
+        if child in airport_data[parent].keys():
+            airport_connections.append( (parent, airport_data[parent][child]) )
+    # sort by smallest int
+    # print(airport_connections)
+    # sort "in place"
+    airport_connections = sorted(airport_connections,key=lambda x: x[1])
+    all_airport_connections[child] = airport_connections
+    # cutoff!!
+    # get min
+    minimum = min([t[1] for t in airport_connections])
+    cutoff = [t for t in all_airport_connections[child] if t[1] <= minimum + MAX_PRICE_DIFFERENCE]
+    # print('cutoff', cutoff)
+    cutoff_airport_connections[child] = dict(cutoff)
+print(cutoff_airport_connections)
 
+import json
+with open('FROM.json', 'w', encoding='utf-8') as f:
+    json.dump(cutoff_airport_connections, f, ensure_ascii=False, indent=4)
 
 
 
