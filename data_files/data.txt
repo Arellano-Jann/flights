@@ -1,4 +1,3 @@
-BASE DATA, DO NOT CHANGE
 dict OAK
 {
 "SJO" : $347-380

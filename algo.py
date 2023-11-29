@@ -5,6 +5,46 @@ from first_number_data_modified import airport_data
 # f = open('first_number_data_modified.json')
 # airport_data = json.load(f)
 # f.close()
+# make data into standardized
+
+def read_flight_data(file_path):
+    airport_dicts = {}
+    current_airport = None
+
+    with open(file_path, 'r') as file:
+        for line in file:
+            line = line.strip()
+            if line.startswith("dict"):
+                current_airport = line.split()[1]
+                airport_dicts[current_airport] = {}
+            elif line not in '{}':
+                destination, price_range = map(str.strip, line.split(':', 1))
+                airport_dicts[current_airport][destination.strip('\"')] = price_range
+
+    return airport_dicts
+
+file_path = 'data_files/data.txt'
+flight_data = read_flight_data(file_path)
+# print(flight_data)
+
+import json
+with open('output/flight_data.json', 'w', encoding='utf-8') as f:
+    json.dump(flight_data, f, ensure_ascii=False, indent=4)
+    
+    
+    
+    
+    
+####################################################################
+
+# Turn flight_data into numbers or whatever you told chatGPT to do
+
+
+
+
+
+
+####################################################################
 
 
 # Extract unique airports from all dictionaries
