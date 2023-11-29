@@ -5,8 +5,8 @@ from first_number_data_modified import airport_data
 # f = open('first_number_data_modified.json')
 # airport_data = json.load(f)
 # f.close()
-# make data into standardized
 
+# make data into standardized
 def read_flight_data(file_path):
     airport_dicts = {}
     current_airport = None
