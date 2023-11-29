@@ -65,7 +65,6 @@ for i in range(len(airports)):
         if (np.isnan(distance_matrix[j, i])): 
             distance_matrix[j, i] = distance_matrix[i, j]
                 
-
 import pandas
 df = pandas.DataFrame(distance_matrix, columns=airports, index=airports)
 
@@ -80,7 +79,7 @@ print(df)
 df.to_csv('output/adj_matrix.csv')
 
 
-
+####################################################################
 
 
 def dataframe_to_adjacency_list(df):
@@ -110,6 +109,8 @@ with open('output/adj_list.json', 'w', encoding='utf-8') as f:
     json.dump(adjacency_list, f, ensure_ascii=False, indent=4)
     
     
+    
+####################################################################
     
     
     
