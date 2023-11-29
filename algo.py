@@ -134,9 +134,9 @@ def dataframe_to_adjacency_list(df):
             # Check if there's a connection (non-zero weight)
             weight = df.at[node, neighbor]
             if weight != '-':
-                neighbors[neighbor] = weight
+                neighbors[neighbor] = int(weight)
 
-        adjacency_list[node] = neighbors
+        adjacency_list[node] = dict(sorted(neighbors.items(),key=lambda x: x[1]))
 
     return adjacency_list
 
@@ -156,7 +156,7 @@ with open('output/adj_list.json', 'w', encoding='utf-8') as f:
     
 # Find the n least expensive airports to fly from a destination airport to source airport
 # Credit to Lyssie
-MAX_PRICE_DIFFERENCE = 10 # threshold
+MAX_PRICE_DIFFERENCE = 100 # threshold
 # get set of all the children
 airport_parents = set(airport_data.keys()) # DEPARTURE
 airport_children = set() # ARRIVAL
@@ -187,8 +187,8 @@ print(cutoff_airport_connections)
 
 import json
 with open('output/least_expensive_airports.json', 'w', encoding='utf-8') as f:
-    # json.dump(dict(sorted(cutoff_airport_connections.items())), f, ensure_ascii=False, indent=4)
     json.dump(dict(sorted(cutoff_airport_connections.items())), f, ensure_ascii=False, indent=4)
+    # json.dump(((cutoff_airport_connections)), f, ensure_ascii=False, indent=4)
 
 
 
