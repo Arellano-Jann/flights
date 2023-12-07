@@ -5,12 +5,13 @@ dep:
 	pip3 install numpy pandas matplotlib networkx seaborn
 
 svelte:
-	npm create svelte@latest frontend
-	cd frontend
+	# npm create svelte@latest frontend
+	# cd frontend
 	npm install
 
 django:
 	pip3 install django django-rest-framework django-cors-headers
+	django-admin startproject backend
 
 backend:
 	python3 manage.py makemigrations
