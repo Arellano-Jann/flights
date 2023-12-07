@@ -1,7 +1,7 @@
 from django.urls import path, include
-from backend import views
-# from backend.views import *
-# from backend.views import CredentialViewSet
+from flights import views
+# from flights.views import *
+# from flights.views import CredentialViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()

@@ -5,8 +5,8 @@ from rest_framework import status, permissions, viewsets
 from django.contrib.auth.models import User
 from flights.models import Agent, Protocol, Endpoint, Task, TaskResult, Credential, File, Log
 from flights.serializers import SignUpSerializer, AgentSerializer, ProtocolSerializer, EndpointSerializer, TaskSerializer, TaskResultSerializer, CredentialSerializer, FileSerializer, LogSerializer
-# from backend import models
-# from backend import serializers
+# from flights import models
+# from flights import serializers
 
 # Create your views here.
 # Users

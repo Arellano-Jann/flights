@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.validators import ValidationError
-from backend.models import Agent, Protocol, Endpoint, Task, TaskResult, Credential, File, Log
+from flights.models import Agent, Protocol, Endpoint, Task, TaskResult, Credential, File, Log
 from django.contrib.auth.models import User
 
 class SignUpSerializer(serializers.ModelSerializer):
