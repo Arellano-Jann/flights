@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status, permissions, viewsets
 from django.contrib.auth.models import User
-from backend.models import Agent, Protocol, Endpoint, Task, TaskResult, Credential, File, Log
-from backend.serializers import SignUpSerializer, AgentSerializer, ProtocolSerializer, EndpointSerializer, TaskSerializer, TaskResultSerializer, CredentialSerializer, FileSerializer, LogSerializer
+from flights.models import Agent, Protocol, Endpoint, Task, TaskResult, Credential, File, Log
+from flights.serializers import SignUpSerializer, AgentSerializer, ProtocolSerializer, EndpointSerializer, TaskSerializer, TaskResultSerializer, CredentialSerializer, FileSerializer, LogSerializer
 # from backend import models
 # from backend import serializers
 
