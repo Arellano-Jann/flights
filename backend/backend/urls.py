@@ -25,7 +25,7 @@ urlpatterns = [
     path("flights", include("flights.urls")),
     # For now, redirect anything to the root to the sole application
     # Don't know if we'll need to deal with this differently later
-    path("", RedirectView.as_view(url="flights/", permanent=True)),
+    path("/", RedirectView.as_view(url="flights/")),
 ]
 
 # Files will be served statically.

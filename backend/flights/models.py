@@ -8,6 +8,7 @@ from django.conf import settings
 
 
 class Flight(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     min_cost = models.IntegerField(help_text="Minimum cost for the flight")
     max_cost = models.IntegerField(help_text="Maximum cost for the flight")
     avg_cost = models.IntegerField(blank=True, null=True, help_text="Average cost for the flight. If empty, this is autofilled.")
@@ -35,7 +36,6 @@ class Flight(models.Model):
     
 # has list of airports in the city
 # class City(models.Model):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 #     # Human-readable name, device hostname, and remote address
 #     # Does this device actually have an agent installed?
 #     is_virtual = models.BooleanField()
