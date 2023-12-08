@@ -1,7 +1,8 @@
 <script>
-    import { createTable, Render, Subscribe } from "svelte-headless-table";
+    import { createTable, Render, Subscribe, createRender } from "svelte-headless-table";
     import { readable } from "svelte/store";
     import * as Table from "$lib/components/ui/table";
+    import DataTableActions from "./data-table-actions.svelte";
 
     const flights = [   
         {
@@ -57,6 +58,13 @@
         table.column({
             accessor: "to_airport",
             header: "Airport (Dest.)"
+        }),
+        table.column({
+            accessor: ({id}) => id,
+            header: "",
+            cell: ({ value }) => {
+                return createRender(DataTableActions, {id: value});
+            }
         })
     ])
 
