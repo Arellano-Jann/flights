@@ -1,6 +1,9 @@
 run:
 	npm run dev
 
+add:
+	pnpx shadcn-svelte@latest add 
+
 open:
 	npm run dev -- --open
 
