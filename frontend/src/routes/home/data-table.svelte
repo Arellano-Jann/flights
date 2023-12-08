@@ -28,11 +28,27 @@
         }),
         table.column({
             accessor: "min_cost",
-            header: "Min Cost"
+            header: "Min Cost",
+            cell: ({ value }) => {
+                const formatted = new Intl.NumberFormat('en-US', {
+                    style: "currency",
+                    currency: "USD",
+                    maximumFractionDigits: 0,
+                }).format(value);
+                return formatted;
+            }
         }),
         table.column({
             accessor: "max_cost",
-            header: "Max Cost"
+            header: "Max Cost",
+            cell: ({ value }) => {
+                const formatted = new Intl.NumberFormat('en-US', {
+                    style: "currency",
+                    currency: "USD",
+                    maximumFractionDigits: 0,
+                }).format(value);
+                return formatted;
+            }
         }),
         table.column({
             accessor: "from_airport",
@@ -55,8 +71,14 @@
                     <Table.Row>
                         {#each headerRow.cells as cell (cell.id)}
                             <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()}>
-                                <Table.Head>
-                                    <Render of={cell.render()}/>
+                                <Table.Head {... attrs}>
+                                    {#if ["min_cost", "max_cost"].includes(cell.id)}
+                                        <div class="text-right">
+                                            <Render of={cell.render()}/>
+                                        </div>
+                                    {:else}
+                                        <Render of={cell.render()}/>
+                                    {/if}
                                 </Table.Head>
                             </Subscribe>
                         {/each}
@@ -71,7 +93,13 @@
                         {#each row.cells as cell (cell.id)}
                             <Subscribe attrs={cell.attrs()} let:attrs>
                                 <Table.Cell {...attrs}>
-                                    <Render of={cell.render()}/>
+                                    {#if ["min_cost", "max_cost"].includes(cell.id)}
+                                        <div class="text-right">
+                                            <Render of={cell.render()}/>
+                                        </div>
+                                    {:else}
+                                        <Render of={cell.render()}/>
+                                    {/if}
                                 </Table.Cell>
                             </Subscribe>
                         {/each}
