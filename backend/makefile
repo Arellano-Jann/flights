@@ -10,5 +10,9 @@ migrate:
 	python3 manage.py makemigrations
 	python3 manage.py migrate
 
+migrate-first-run:
+	python3 manage.py migrate --run-syncdb
+	make migrate
+
 run:
 	python3 manage.py runserver

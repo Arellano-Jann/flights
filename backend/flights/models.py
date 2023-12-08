@@ -24,14 +24,14 @@ class Flight(models.Model):
     date_first_checked = models.DateField(blank=True, null=True, editable=False, help_text="Enter in the form: ")
     date_last_checked = models.DateField(blank=True, null=True, help_text="Enter in the form: ")
     date_of_flight = models.DateField(blank=True, null=True, help_text="Enter the day the plane flies out") # note that this not consider return flights and those would have to be entered again
-    days_of_the_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] 
-    day_of_flight = CharField(max_length=9, choices=days_of_the_week, help_text="i.e. Monday")
+    days_of_the_week = [("MON","Monday"), ("TUE","Tuesday"), ("WED","Wednesday"), ("THU","Thursday"), ("FRI","Friday"), ("SAT","Saturday"), ("SUN","Sunday")]
+    day_of_flight = models.CharField(max_length=9, choices=days_of_the_week, help_text="i.e. Monday")
 
     def get_absolute_url(self):
         return reverse("agent-detail", args=[str(self.id)])
     
     def __str__(self):
-        return self.name
+        return self.date_of_flight + ': ' + self.from_airport + ' to ' + self.to_airport
     
 # has list of airports in the city
 # class City(models.Model):

@@ -5,8 +5,6 @@ from rest_framework import status, permissions, viewsets
 from django.contrib.auth.models import User
 from flights.models import Flight
 from flights.serializers import SignUpSerializer, FlightSerializer
-# from flights import models
-# from flights import serializers
 
 # Create your views here.
 # Users
@@ -53,42 +51,43 @@ class SignUpViewSet(viewsets.ViewSet):
 
 
 # Agents
-class AgentViewSet(viewsets.ModelViewSet):
-    queryset = Agent.objects.all()
-    serializer_class = AgentSerializer
+class FlightViewSet(viewsets.ModelViewSet):
+    queryset = Flight.objects.all()
+    serializer_class = FlightSerializer
+
 @api_view(['GET'])
-def agents(request):
-    agents = Agent.objects.all()
-    serializer = AgentSerializer(agents, many=True) # setting to true means to serialize multiple items. False is just one item
+def flights(request):
+    flights = Agent.objects.all()
+    serializer = FlightSerializer(flights, many=True) # setting to true means to serialize multiple items. False is just one item
     return Response(serializer.data)
 
 @api_view(['POST'])
-def addAgent(request):
-    serializer = AgentSerializer(data=request.data)
+def addFlight(request):
+    serializer = FlightSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
 
-# Credentials
-class CredentialViewSet(viewsets.ModelViewSet):
-    queryset = Credential.objects.all()
-    serializer_class = CredentialSerializer
+# # Credentials
+# class CredentialViewSet(viewsets.ModelViewSet):
+#     queryset = Credential.objects.all()
+#     serializer_class = CredentialSerializer
     
-    # def list(self, request):
-    #     serializer = self.get_serializer(self.get_queryset(), many=True)
-    #     return self.get_paginated_response(self.paginate_queryset(serializer.data))
+#     # def list(self, request):
+#     #     serializer = self.get_serializer(self.get_queryset(), many=True)
+#     #     return self.get_paginated_response(self.paginate_queryset(serializer.data))
 
-    # def create(self, request):
-    #     pass
+#     # def create(self, request):
+#     #     pass
 
-    # def retrieve(self, request, pk=None):
-    #     pass
+#     # def retrieve(self, request, pk=None):
+#     #     pass
 
-    # def update(self, request, pk=None):
-    #     pass
+#     # def update(self, request, pk=None):
+#     #     pass
 
-    # def partial_update(self, request, pk=None):
-    #     pass
+#     # def partial_update(self, request, pk=None):
+#     #     pass
 
-    # def destroy(self, request, pk=None):
-    #     pass
+#     # def destroy(self, request, pk=None):
+#     #     pass

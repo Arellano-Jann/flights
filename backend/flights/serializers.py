@@ -26,8 +26,7 @@ class SignUpSerializer(serializers.ModelSerializer):
         return self.username
     
 
-class AgentSerializer(serializers.ModelSerializer):
+class FlightSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Agent
+        model = Flight
         fields = '__all__'
-        # fields = ['name']
