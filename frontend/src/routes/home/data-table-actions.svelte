@@ -23,6 +23,7 @@
     <DropdownMenu.Content>
         <DropdownMenu.Group>
             <DropdownMenu.Label>Actions</DropdownMenu.Label>
+            <DropdownMenu.Separator />
             <DropdownMenu.Item on:click={clickDelete}>
                 Delete
             </DropdownMenu.Item>
