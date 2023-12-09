@@ -11,22 +11,24 @@
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
     import {ArrowUpDown, ChevronDown} from "lucide-svelte";
 
-    const flights = [   
-        {
-            "id": "m5",
-            "min_cost": 1,
-            "max_cost": 3,
-            "from_airport": "BUR",
-            "to_airport": "LAS"
-        },
-        {
-            "id": "m6",
-            "min_cost": 2,
-            "max_cost": 4,
-            "from_airport": "LGA",
-            "to_airport": "MDW"
-        }
-    ];
+    // const flights = [   
+    //     {
+    //         "id": "m5",
+    //         "min_cost": 1,
+    //         "max_cost": 3,
+    //         "from_airport": "BUR",
+    //         "to_airport": "LAS"
+    //     },
+    //     {
+    //         "id": "m6",
+    //         "min_cost": 2,
+    //         "max_cost": 4,
+    //         "from_airport": "LGA",
+    //         "to_airport": "MDW"
+    //     }
+    // ];
+
+    export let flights;
 
     const table = createTable(readable(flights), {
         sort: addSortBy({ disableMultiSort: true}),
