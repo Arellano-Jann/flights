@@ -29,7 +29,7 @@ class Flight(models.Model):
     day_of_flight = models.CharField(max_length=9, choices=days_of_the_week, help_text="i.e. Monday")
 
     def get_absolute_url(self):
-        return reverse("agent-detail", args=[str(self.id)])
+        return reverse("flight-detail", args=[str(self.id)])
     
     def __str__(self):
         return self.date_of_flight + ': ' + self.from_airport + ' to ' + self.to_airport

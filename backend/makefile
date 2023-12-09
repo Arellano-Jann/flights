@@ -11,8 +11,14 @@ migrate:
 	python3 manage.py migrate
 
 migrate-first-run:
-	python3 manage.py migrate --run-syncdb
+	make sync
 	make migrate
+
+sync:
+	python3 manage.py migrate --run-syncdb
+
+fake:
+	python3 manage.py migrate --fake flights
 
 run:
 	python3 manage.py runserver

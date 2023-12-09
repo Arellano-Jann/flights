@@ -50,7 +50,7 @@ class SignUpViewSet(viewsets.ViewSet):
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# Agents
+# Flights
 class FlightViewSet(viewsets.ModelViewSet):
     queryset = Flight.objects.all()
     serializer_class = FlightSerializer

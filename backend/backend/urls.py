@@ -22,7 +22,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("flights", include("flights.urls")),
+    path("backend", include("flights.urls")),
     # For now, redirect anything to the root to the sole application
     # Don't know if we'll need to deal with this differently later
     path("/", RedirectView.as_view(url="flights/")),
