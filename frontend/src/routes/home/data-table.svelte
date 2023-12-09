@@ -118,7 +118,7 @@
         .filter(([, hide]) => !hide)
         .map(([id]) => id);
 
-    const hidableCols = ["id", "min_cost", "max_cost", "from_airport", "to_airport" ]
+    const hidableCols = ["min_cost", "max_cost", "from_airport", "to_airport" ]
     
 </script>
 
