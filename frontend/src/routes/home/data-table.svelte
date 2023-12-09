@@ -1,32 +1,37 @@
 <script>
     import { createTable, Render, Subscribe, createRender } from "svelte-headless-table";
-    import { addSortBy } from "svelte-headless-table/plugins";
+    import { addSortBy, addTableFilter } from "svelte-headless-table/plugins";
     import { readable } from "svelte/store";
     import * as Table from "$lib/components/ui/table";
     import DataTableActions from "./data-table-actions.svelte";
     import Button from "$lib/components/ui/button/button.svelte"
     // import {Button} from "$lib/components/ui/button"
     import {ArrowUpDown} from "lucide-svelte";
+    import { Input } from "$lib/components/ui/input";
 
     const flights = [   
         {
             "id": "m5",
             "min_cost": 1,
-            "max_cost": 1,
+            "max_cost": 3,
             "from_airport": "BUR",
             "to_airport": "LAS"
         },
         {
             "id": "m6",
-            "min_cost": 1,
-            "max_cost": 1,
-            "from_airport": "BUR",
-            "to_airport": "LAS"
+            "min_cost": 2,
+            "max_cost": 4,
+            "from_airport": "LGA",
+            "to_airport": "MDW"
         }
     ];
 
     const table = createTable(readable(flights), {
-        sort: addSortBy()
+        sort: addSortBy(),
+        filter: addTableFilter({
+            fn: ({ filterValue, value }) =>
+                value.toLowerCase().includes(filterValue.toLowerCase())
+        })
     });
     const columns = table.createColumns([
         table.column({
@@ -79,8 +84,14 @@
         })
     ]);
 
-    const { headerRows, pageRows, tableAttrs, tableBodyAttrs } = table.createViewModel(columns);
+    const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } = table.createViewModel(columns);
+    const { filterValue } = pluginStates.filter;
 </script>
+
+
+<div class="flex items-center py-4">
+    <Input class="max-w-sm" placeholder="Filter" type="text" bind:value={$filterValue}/>
+</div>
 
 <div class="rounded-md border">
     <Table.Root {...$tableAttrs}>
