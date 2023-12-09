@@ -1,13 +1,14 @@
 <script>
     import { createTable, Render, Subscribe, createRender } from "svelte-headless-table";
-    import { addSortBy, addTableFilter } from "svelte-headless-table/plugins";
+    import { addSortBy, addTableFilter, addHiddenColumns } from "svelte-headless-table/plugins";
     import { readable } from "svelte/store";
     import * as Table from "$lib/components/ui/table";
     import DataTableActions from "./data-table-actions.svelte";
     import Button from "$lib/components/ui/button/button.svelte"
     // import {Button} from "$lib/components/ui/button"
-    import {ArrowUpDown} from "lucide-svelte";
     import { Input } from "$lib/components/ui/input";
+    import * as DropdownMenu from "$lib/components/ui/dropdown-menu"
+    import {ArrowUpDown, ChevronDown} from "lucide-svelte";
 
     const flights = [   
         {
@@ -27,11 +28,12 @@
     ];
 
     const table = createTable(readable(flights), {
-        sort: addSortBy(),
+        sort: addSortBy({ disableMultiSort: true}),
         filter: addTableFilter({
             fn: ({ filterValue, value }) =>
                 value.toLowerCase().includes(filterValue.toLowerCase())
-        })
+        }),
+        hide: addHiddenColumns()
     });
     const columns = table.createColumns([
         table.column({
@@ -84,13 +86,41 @@
         })
     ]);
 
-    const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } = table.createViewModel(columns);
+    const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates, flatColumns } = table.createViewModel(columns);
     const { filterValue } = pluginStates.filter;
+    const { hiddenColumnIds } = pluginStates.hide;
+
+    const ids = flatColumns.map((col) => col.id);
+    let hideForId = Object.fromEntries(ids.map((id) => [id, true]));
+
+    $: $hiddenColumnIds = Object.entries(hideForId)
+        .filter(([, hide]) => !hide)
+        .map(([id]) => id);
+
+    const hidableCols = ["id", "min_cost", "max_cost", "from_airport", "to_airport" ]
+    
 </script>
 
 
 <div class="flex items-center py-4">
     <Input class="max-w-sm" placeholder="Filter" type="text" bind:value={$filterValue}/>
+
+    <DropdownMenu.Root>
+        <DropdownMenu.Trigger asChild let:builder>
+            <Button variant="outline" class="ml-auto" builders={[builder]}>
+                Columns <ChevronDown class="ml-2 h-4 w-4"/>
+            </Button>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content>
+            {#each flatColumns as col}
+                {#if hidableCols.includes(col.id)}
+                    <DropdownMenu.CheckboxItem bind:checked={hideForId[col.id]}>
+                        {col.header}
+                    </DropdownMenu.CheckboxItem>
+                {/if}
+            {/each}
+        </DropdownMenu.Content>
+    </DropdownMenu.Root>
 </div>
 
 <div class="rounded-md border">
