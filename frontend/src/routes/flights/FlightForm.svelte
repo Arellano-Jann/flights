@@ -1,5 +1,6 @@
 <script>
-	import { Form } from "$lib/components/ui/form";
+	// import { Form } from "$lib/components/ui/form"; // gives <Form.Root> is not a valid SSR component but idk why
+	import * as Form from "$lib/components/ui/form";
     import { formSchema } from "./schema";
 
     export let form;
