@@ -17,8 +17,17 @@ export const actions = {
           form
         });
       }
-      return {
-        form
-      };
+      console.log(form.data)
+      const res = await fetch('http://127.0.0.1:8000/backend/flights/', {
+        method: 'POST',
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form.data)
+      })
+        
+      const json = await res.json();
+      console.log(JSON.stringify(json));
     }
   };
