@@ -1,6 +1,6 @@
-/** @type {import('./$types').PageLoad} */
+/** @type {import('../$types').PageLoad} */
 import { superValidate } from "sveltekit-superforms/server";
-import { formSchema } from "../schema";
+import { formSchema } from "../../schema";
 import { fail } from "@sveltejs/kit";
 
 export async function load() {
