@@ -3,8 +3,19 @@ import { superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "../../schema";
 import { fail } from "@sveltejs/kit";
 
-export async function load() {
+export async function load(params) {
+    const res = await fetch('http://127.0.0.1:8000/backend/flights/' + params.slug, {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: 'GET'
+    });
+    
+    const flight = await res.json();
+    console.log(JSON.stringify(flight));
     return {
+        slug: params.slug,
+        flight: flight,
         form: superValidate(formSchema) // possible typescript shit
     };
 };
