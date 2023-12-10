@@ -32,6 +32,22 @@
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
+    <Form.Field {config} name="from_city">
+        <Form.Item>
+            <Form.Label>from_city</Form.Label>
+            <Form.Input/>
+            <Form.Description>from_city</Form.Description>
+            <Form.Validation/>
+        </Form.Item>
+    </Form.Field>
+    <Form.Field {config} name="to_city">
+        <Form.Item>
+            <Form.Label>to_city</Form.Label>
+            <Form.Input/>
+            <Form.Description>to_city</Form.Description>
+            <Form.Validation/>
+        </Form.Item>
+    </Form.Field>
     <Form.Field {config} name="from_airport">
         <Form.Item>
             <Form.Label>from_airport</Form.Label>
@@ -48,8 +64,33 @@
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
+    <Form.Field {config} name="airline">
+        <Form.Item>
+            <Form.Label>airline</Form.Label>
+            <Form.Input/>
+            <Form.Description>airline</Form.Description>
+            <Form.Validation/>
+        </Form.Item>
+    </Form.Field>
+    <Form.Field {config} name="flight_code">
+        <Form.Item>
+            <Form.Label>flight_code</Form.Label>
+            <Form.Input/>
+            <Form.Description>flight_code</Form.Description>
+            <Form.Validation/>
+        </Form.Item>
+    </Form.Field>
+    <Form.Field {config} name="day_of_flight">
+        <Form.Item>
+            <Form.Label>day_of_flight</Form.Label>
+            <Form.Input/>
+            <Form.Description>day_of_flight</Form.Description>
+            <Form.Validation/>
+        </Form.Item>
+    </Form.Field>
 
-    <Form.Item>
+
+    <!-- <Form.Item>
 		<Form.Field {config} name="email">
 			<Form.Label>Email</Form.Label>
 			<Form.Select>
@@ -75,7 +116,7 @@
 			</Form.Description>
 			<Form.Validation />
 		</Form.Field>
-	</Form.Item>
+	</Form.Item> -->
 
     <Form.Button>Submit</Form.Button>
 </Form.Root>

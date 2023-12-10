@@ -1,5 +1,5 @@
 ~~1. list flights (table)~~
-4. add flight (form)
+~~4. add flight (form)~~
 2. update flight (button -> form)
 2a. delete flight (actions part)
 3. populate data tables
@@ -10,6 +10,6 @@
 - remove sort (actions) in table-data
 - make column disappear if nothing inside? (maybe this is kinda handled by the hide button)
 
-- ensure data validation (min cost < max cost)
+- ensure data validation (min cost < max cost) (ints) (error messages, on submit and while filling out)
 
 - what happens in zod if some data is missing?
