@@ -1,6 +1,6 @@
 ~~1. list flights (table)~~
 ~~4. add flight (form)~~
-2. update flight (button -> form)
+~~2. update flight (button -> form)~~
 2a. delete flight (actions part)
 3. populate data tables
 ~~3. filterFlight (filter table)~~
