@@ -16,8 +16,8 @@ class Flight(models.Model):
     # This can be extended into a dropdown list of values and autopopulated. However it's manual currently
     from_city = models.TextField(blank=True, null=True, help_text="Enter source city name")
     to_city = models.TextField(blank=True, null=True, help_text="Enter destination city name")
-    from_airport = models.CharField(blank=True, null=True, max_length=3, help_text="Enter three letter airport location ID")
-    to_airport = models.CharField(blank=True, null=True, max_length=3, help_text="Enter three letter airport location ID")
+    from_airport = models.CharField(max_length=3, help_text="Enter three letter airport location ID")
+    to_airport = models.CharField(max_length=3, help_text="Enter three letter airport location ID")
     
     airline = models.TextField(blank=True, null=True, help_text="")
     flight_code = models.TextField(blank=True, null=True, help_text="Enter airline's unique flight code")

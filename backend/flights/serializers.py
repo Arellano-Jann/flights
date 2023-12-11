@@ -27,9 +27,6 @@ class SignUpSerializer(serializers.ModelSerializer):
     
 
 class FlightSerializer(serializers.ModelSerializer):
-    # date_first_checked = fields.DateTimeField(input_formats=['%Y-%m-%d'])
-    # date_last_checked = fields.DateTimeField(input_formats=['%Y-%m-%d'])
-    # date_of_flight = fields.DateField(input_formats=['%Y-%m-%dZ'])
 
     class Meta:
         model = Flight
