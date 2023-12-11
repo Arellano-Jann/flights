@@ -8,6 +8,12 @@
     
     async function clickDelete() {
         // fetch delete
+        const res = await fetch('http://127.0.0.1:8000/backend/flights/' + id, {
+            method: 'DELETE'
+        })
+        
+        const json = await res.json();
+        console.log("DELETE ID", JSON.stringify(json));
     }
     async function clickUpdate() {
         // redirect to update
