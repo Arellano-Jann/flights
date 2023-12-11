@@ -39,7 +39,7 @@
         <DropdownMenu.Group>
             <DropdownMenu.Label>Actions</DropdownMenu.Label>
             <DropdownMenu.Separator />
-            <DropdownMenu.Item on:click={clickDelete}>
+            <DropdownMenu.Item class="text-destructive" on:click={clickDelete}>
                 Delete
             </DropdownMenu.Item>
             <DropdownMenu.Item on:click={clickUpdate}>
