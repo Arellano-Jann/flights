@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 export const formSchema = z.object({
-    min_cost: z.number().nonnegative().int().finite().safe(),
-    max_cost: z.number().nonnegative().int().finite().safe(),
-    avg_cost: z.number().nonnegative().finite().safe(),
+    min_cost: z.coerce.number().nonnegative().int().finite().safe(),
+    max_cost: z.coerce.number().nonnegative().int().finite().safe(),
+    avg_cost: z.coerce.number().nonnegative().finite().safe(),
     from_city: z.string(),
     to_city: z.string(),
     from_airport: z.string().max(3),
