@@ -2,14 +2,18 @@
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
     import Button from "$lib/components/ui/button/button.svelte";
     import { MoreHorizontal } from "lucide-svelte";
+    import { goto } from '$app/navigation';
+    
+    export let id;
+    
     async function clickDelete() {
-        
+        // fetch delete
     }
     async function clickUpdate() {
-        
+        // redirect to update
+        goto('flights/update/' + id)
     }
 
-    export let id;
 </script>
 
 <DropdownMenu.Root>
