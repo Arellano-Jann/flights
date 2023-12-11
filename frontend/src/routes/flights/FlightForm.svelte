@@ -1,4 +1,6 @@
 <script>
+	import DatePicker from "$lib/components/date-picker/DatePicker.svelte";
+
 	// import { Form } from "$lib/components/ui/form"; // gives <Form.Root> is not a valid SSR component but idk why
 	import * as Form from "$lib/components/ui/form";
     import { formSchema } from "./schema";
@@ -6,6 +8,8 @@
 
     export let form;
 </script>
+
+<DatePicker/>
 
 <Form.Root method="POST" {form} schema={formSchema} let:config>
     <Form.Field {config} name="min_cost">
@@ -77,6 +81,30 @@
             <Form.Label>flight_code</Form.Label>
             <Form.Input/>
             <Form.Description>flight_code</Form.Description>
+            <Form.Validation/>
+        </Form.Item>
+    </Form.Field>
+    <Form.Field {config} name="date_first_checked">
+        <Form.Item>
+            <Form.Label>date_first_checked</Form.Label>
+            <Form.Input/>
+            <Form.Description>date_first_checked</Form.Description>
+            <Form.Validation/>
+        </Form.Item>
+    </Form.Field>
+    <Form.Field {config} name="date_last_checked">
+        <Form.Item>
+            <Form.Label>date_last_checked</Form.Label>
+            <Form.Input/>
+            <Form.Description>date_last_checked</Form.Description>
+            <Form.Validation/>
+        </Form.Item>
+    </Form.Field>
+    <Form.Field {config} name="date_of_flight">
+        <Form.Item>
+            <Form.Label>date_of_flight</Form.Label>
+            <Form.Input/>
+            <Form.Description>date_of_flight</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>

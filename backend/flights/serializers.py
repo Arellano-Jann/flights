@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers, fields
 from rest_framework.validators import ValidationError
 from flights.models import Flight
 from django.contrib.auth.models import User
@@ -27,6 +27,10 @@ class SignUpSerializer(serializers.ModelSerializer):
     
 
 class FlightSerializer(serializers.ModelSerializer):
+    # date_first_checked = fields.DateTimeField(input_formats=['%Y-%m-%d'])
+    # date_last_checked = fields.DateTimeField(input_formats=['%Y-%m-%d'])
+    date_of_flight = fields.DateField(input_formats=['%Y-%m-%d'])
+
     class Meta:
         model = Flight
         fields = '__all__'
