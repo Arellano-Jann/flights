@@ -4,7 +4,7 @@ import { formSchema } from "../../schema";
 import { fail } from "@sveltejs/kit";
 
 export async function load({params}) {
-    const res = await fetch('http://127.0.0.1:8000/backend/flights/' + params.uuid, {
+    const res = await fetch(`http://127.0.0.1:8000/backend/flights/${params.uuid}`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -29,7 +29,7 @@ export const actions = {
         });
       }
       console.log("PATCH", form.data)
-      const res = await fetch('http://127.0.0.1:8000/backend/flights/'  + params.uuid + '/', {
+      const res = await fetch(`http://127.0.0.1:8000/backend/flights/${params.uuid}/`, {
         method: 'PATCH',
         mode: "cors",
         headers: {
