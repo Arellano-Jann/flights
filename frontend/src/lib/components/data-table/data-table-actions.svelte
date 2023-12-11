@@ -1,7 +1,7 @@
 <script>
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
     import Button from "$lib/components/ui/button/button.svelte";
-    import { MoreHorizontal } from "lucide-svelte";
+    import { MoreHorizontal, Bomb, Pen } from "lucide-svelte";
     // import { Flights } from ;
     import { goto, invalidateAll, invalidate } from '$app/navigation';
     
@@ -40,9 +40,11 @@
             <DropdownMenu.Label>Actions</DropdownMenu.Label>
             <DropdownMenu.Separator />
             <DropdownMenu.Item class="text-destructive" on:click={clickDelete}>
+                <Bomb class="mr-2 h-4 w-4"/> 
                 Delete
             </DropdownMenu.Item>
             <DropdownMenu.Item on:click={clickUpdate}>
+                <Pen class="mr-2 h-4 w-4"/> 
                 Update
             </DropdownMenu.Item>
         </DropdownMenu.Group>
