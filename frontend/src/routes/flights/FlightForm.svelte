@@ -19,15 +19,20 @@
     import { Button, buttonVariants } from "$lib/components/ui/button";
     import { Calendar } from "$lib/components/ui/calendar";
     import * as Popover from "$lib/components/ui/popover";
+    import { superForm } from "sveltekit-superforms/client";
+    export let form;
 
+    const theForm = superForm(form, { // incoming form with validators and taints
+      validators: formSchema,
+      taintedMessage: null
+    });
+    const { form: formStore } = theForm; // set validated form to inhouse var
     const df = new DateFormatter("en-US", { // date formatter
       dateStyle: "long"
     });
-
-    let value;
+    let value = $formStore.date_of_flight;
     let placeholder = today(getLocalTimeZone());
 
-    export let form;
 </script>
 
 <DatePicker/>
@@ -114,7 +119,7 @@
                     id="date"
                     {...attrs}
                     class={cn(
-                      buttonVariants({ variant: "outline" }),
+                      buttonVariants({ variant: "default" }),
                       "w-[280px] pl-4 justify-start text-left font-normal",
                       !value && "text-muted-foreground"
                     )}
@@ -135,9 +140,9 @@
                     initialFocus
                     onValueChange={(v) => {
                       if (v) {
-                        value = parseDate(v.toString());
+                        $formStore.date_first_checked = parseDate(v.toString());
                       } else {
-                        value = "";
+                        $formStore.date_first_checked = "";
                       }
                     }}
                   />
