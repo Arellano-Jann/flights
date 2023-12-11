@@ -9,7 +9,7 @@ export async function load() {
     });
     
     const flights = await res.json();
-    console.log(JSON.stringify(flights));
+    console.log("GET TABLE", JSON.stringify(flights));
     
     return { flights };
 };

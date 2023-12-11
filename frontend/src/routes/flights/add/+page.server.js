@@ -28,6 +28,6 @@ export const actions = {
       })
         
       const json = await res.json();
-      console.log(JSON.stringify(json));
+      console.log("POST ADD", JSON.stringify(json));
     }
   };
