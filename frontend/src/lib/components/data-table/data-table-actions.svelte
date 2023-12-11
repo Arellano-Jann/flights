@@ -11,9 +11,8 @@
         const res = await fetch('http://127.0.0.1:8000/backend/flights/' + id, {
             method: 'DELETE'
         })
-        
-        const json = await res.json();
-        console.log("DELETE ID", JSON.stringify(json));
+        .then(res => res.json)
+        .then(res => console.log("DELETE ID", JSON.stringify(res)))
     }
     async function clickUpdate() {
         // redirect to update
