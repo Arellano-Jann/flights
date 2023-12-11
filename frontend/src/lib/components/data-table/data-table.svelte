@@ -1,9 +1,10 @@
 <script>
     import { createTable, Render, Subscribe, createRender } from "svelte-headless-table";
-    import { addSortBy, addTableFilter, addHiddenColumns, addSelectedRows } from "svelte-headless-table/plugins";
-    import { readable } from "svelte/store";
+    import { addSortBy, addTableFilter, addHiddenColumns, addSelectedRows, addColumnFilters } from "svelte-headless-table/plugins";
+    import { get, readable } from "svelte/store";
     import DataTableActions from "./data-table-actions.svelte";
     import DataTableCheckbox from "./data-table-checkbox.svelte";
+    import DataTableFacetedFilter from "./data-table-faceted-filter.svelte";
     import * as Table from "$lib/components/ui/table";
     import Button from "$lib/components/ui/button/button.svelte"
     // import {Button} from "$lib/components/ui/button"
@@ -19,6 +20,7 @@
             fn: ({ filterValue, value }) =>
                 value.toLowerCase().includes(filterValue.toLowerCase())
         }),
+        colFilter: addColumnFilters(),
         hide: addHiddenColumns(),
         select: addSelectedRows()
     });
@@ -71,7 +73,27 @@
         }),
         table.column({
             accessor: "from_airport",
-            header: "Airport (Source)"
+            header: "Airport (Source)",
+            plugins: {
+                colFilter: {
+					fn: ({ filterValue, value }) => {
+						if (filterValue.length === 0) return true;
+						if (
+							!Array.isArray(filterValue) ||
+							typeof value !== "string"
+						)
+							return true;
+
+						return filterValue.some((filter) => {
+							return value.includes(filter);
+						});
+					},
+					initialFilterValue: [],
+					render: ({ filterValue }) => {
+						return get(filterValue);
+					}
+				}
+            }
         }),
         table.column({
             accessor: "to_airport",
@@ -93,6 +115,7 @@
 
     const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates, flatColumns, rows } = table.createViewModel(columns);
     const { filterValue } = pluginStates.filter;
+    const { filterValues} = pluginStates.colFilter;
     const { hiddenColumnIds } = pluginStates.hide;
     const { selectedDataIds } = pluginStates.select;
 
@@ -110,6 +133,12 @@
 
 <div class="flex items-center py-4">
     <Input class="max-w-sm" placeholder="Filter" type="text" bind:value={$filterValue}/>
+
+    <DataTableFacetedFilter
+			bind:filterValues={$filterValues.status}
+			title="Status"
+			options={statuses}
+		/>
 
     <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild let:builder>
