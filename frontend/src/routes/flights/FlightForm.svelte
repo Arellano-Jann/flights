@@ -1,10 +1,31 @@
 <script>
-	import DatePicker from "$lib/components/date-picker/DatePicker.svelte";
+    import DatePicker from "$lib/components/date-picker/DatePicker.svelte";
 
-	// import { Form } from "$lib/components/ui/form"; // gives <Form.Root> is not a valid SSR component but idk why
-	import * as Form from "$lib/components/ui/form";
+    // import { Form } from "$lib/components/ui/form"; // gives <Form.Root> is not a valid SSR component but idk why
+    import * as Form from "$lib/components/ui/form";
     import { formSchema } from "./schema";
     // https://github.com/huntabyte/shadcn-svelte/blob/main/apps/www/src/routes/examples/forms/profile-form.svelte
+
+    
+    import { Calendar as CalendarIcon } from "lucide-svelte";
+    import {
+        DateFormatter,
+        getLocalTimeZone,
+        parseDate,
+        CalendarDate,
+        today
+    } from "@internationalized/date";
+    import { cn } from "$lib/utils";
+    import { Button, buttonVariants } from "$lib/components/ui/button";
+    import { Calendar } from "$lib/components/ui/calendar";
+    import * as Popover from "$lib/components/ui/popover";
+
+    const df = new DateFormatter("en-US", { // date formatter
+      dateStyle: "long"
+    });
+
+    let value;
+    let placeholder = today(getLocalTimeZone());
 
     export let form;
 </script>
@@ -87,7 +108,41 @@
     <Form.Field {config} name="date_first_checked">
         <Form.Item>
             <Form.Label>date_first_checked</Form.Label>
-            <Form.Input/>
+            <Popover.Root>
+                <Form.Control id="date" let:attrs>
+                  <Popover.Trigger
+                    id="date"
+                    {...attrs}
+                    class={cn(
+                      buttonVariants({ variant: "outline" }),
+                      "w-[280px] pl-4 justify-start text-left font-normal",
+                      !value && "text-muted-foreground"
+                    )}
+                  >
+                    {value
+                      ? df.format(value.toDate(getLocalTimeZone()))
+                      : "Pick a date"}
+                    <CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
+                  </Popover.Trigger>
+                </Form.Control>
+                <Popover.Content class="w-auto p-0" side="top">
+                  <Calendar
+                    bind:value
+                    bind:placeholder
+                    minValue={new CalendarDate(1900, 1, 1)}
+                    maxValue={today(getLocalTimeZone())}
+                    calendarLabel="Date of birth"
+                    initialFocus
+                    onValueChange={(v) => {
+                      if (v) {
+                        value = parseDate(v.toString());
+                      } else {
+                        value = "";
+                      }
+                    }}
+                  />
+                </Popover.Content>
+              </Popover.Root>
             <Form.Description>date_first_checked</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -119,32 +174,32 @@
 
 
     <!-- <Form.Item>
-		<Form.Field {config} name="email">
-			<Form.Label>Email</Form.Label>
-			<Form.Select>
-				<Form.SelectTrigger
-					placeholder="Select a verified email to display"
-				/>
-				<Form.SelectContent>
-					<Form.SelectItem value="m@example.com" label="m@example.com"
-						>m@example.com
-					</Form.SelectItem>
-					<Form.SelectItem value="m@google.com" label="m@google.com"
-						>m@google.com
-					</Form.SelectItem>
-					<Form.SelectItem value="m@support.com" label="m@support.com"
-						>m@support.com
-					</Form.SelectItem>
-				</Form.SelectContent>
-			</Form.Select>
-			<Form.Description>
-				You can manage verified email addresses in your <a
-					href="/examples/forms">email settings</a
-				>.
-			</Form.Description>
-			<Form.Validation />
-		</Form.Field>
-	</Form.Item> -->
+        <Form.Field {config} name="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Select>
+                <Form.SelectTrigger
+                    placeholder="Select a verified email to display"
+                />
+                <Form.SelectContent>
+                    <Form.SelectItem value="m@example.com" label="m@example.com"
+                        >m@example.com
+                    </Form.SelectItem>
+                    <Form.SelectItem value="m@google.com" label="m@google.com"
+                        >m@google.com
+                    </Form.SelectItem>
+                    <Form.SelectItem value="m@support.com" label="m@support.com"
+                        >m@support.com
+                    </Form.SelectItem>
+                </Form.SelectContent>
+            </Form.Select>
+            <Form.Description>
+                You can manage verified email addresses in your <a
+                    href="/examples/forms">email settings</a
+                >.
+            </Form.Description>
+            <Form.Validation />
+        </Form.Field>
+    </Form.Item> -->
 
     <Form.Button>Submit</Form.Button>
 </Form.Root>
