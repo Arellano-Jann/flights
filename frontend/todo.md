@@ -1,9 +1,9 @@
 ~~1. list flights (table)~~
-~~4. add flight (form)~~
-~~2. update flight (button -> form)~~
-2a. delete flight (actions part)
+~~4. add flight (form)~~ button
+~~2. update flight (button -> form)~~ popup
+~~2a. delete flight (actions part)~~ active reload
 3. populate data tables
-~~3. filterFlight (filter table)~~
+3. filterFlight (filter table individually, like example)
 5. graphView - graph relations of all flights - nodal
 6. solve best path - (input num of destinations to visit)
 

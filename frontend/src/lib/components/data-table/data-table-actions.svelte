@@ -2,21 +2,27 @@
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
     import Button from "$lib/components/ui/button/button.svelte";
     import { MoreHorizontal } from "lucide-svelte";
-    import { goto } from '$app/navigation';
+    // import { Flights } from ;
+    import { goto, invalidateAll, invalidate } from '$app/navigation';
     
-    export let id;
+    export let uuid;
     
     async function clickDelete() {
         // fetch delete
-        const res = await fetch('http://127.0.0.1:8000/backend/flights/' + id, {
+        const res = await fetch(`http://127.0.0.1:8000/backend/flights/${uuid}`, {
             method: 'DELETE'
         })
-        .then(res => res.json)
-        .then(res => console.log("DELETE ID", JSON.stringify(res)))
+        .then(res => {
+            if (res.status == 204){ // hot reloads the table
+                // Flights.update(prev => prev.filter(flight => flight.uuid != uuid))
+                // invalidate('http://127.0.0.1:5173/')
+                invalidateAll()
+            }
+        })
     }
     async function clickUpdate() {
         // redirect to update
-        goto('flights/update/' + id)
+        goto(`flights/update/${uuid}`)
     }
 
 </script>

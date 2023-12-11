@@ -1,7 +1,7 @@
 /** @type {import('./$types').PageLoad} */
 import { superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "../schema";
-import { fail } from "@sveltejs/kit";
+import { redirect, fail } from "@sveltejs/kit";
 
 export async function load() {
     return {
@@ -29,5 +29,6 @@ export const actions = {
         
       const json = await res.json();
       console.log("POST ADD", JSON.stringify(json));
+      redirect(302, 'http://127.0.0.1:5173/');
     }
   };

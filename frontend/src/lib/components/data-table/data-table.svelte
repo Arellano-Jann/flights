@@ -81,7 +81,7 @@
             accessor: ({id}) => id,
             header: "",
             cell: ({ value }) => { // this is what passes the things in
-                return createRender(DataTableActions, {id: value});
+                return createRender(DataTableActions, {uuid: value});
             },
             plugins: {
                 sort: {
