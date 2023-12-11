@@ -11,7 +11,7 @@
     <Form.Field {config} name="min_cost">
         <Form.Item>
             <Form.Label>min_cost</Form.Label>
-            <Form.Input/>
+            <Form.Input>placeholder</Form.Input>
             <Form.Description>min_cost</Form.Description>
             <Form.Validation/>
         </Form.Item>
