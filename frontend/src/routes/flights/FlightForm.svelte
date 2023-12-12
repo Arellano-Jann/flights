@@ -7,6 +7,7 @@
     // https://github.com/huntabyte/shadcn-svelte/blob/main/apps/www/src/routes/examples/forms/profile-form.svelte
 
     
+    import { page } from "$app/stores";
     import { Calendar as CalendarIcon } from "lucide-svelte";
     import {
         DateFormatter,
@@ -20,24 +21,23 @@
     import { Calendar } from "$lib/components/ui/calendar";
     import * as Popover from "$lib/components/ui/popover";
     import { superForm } from "sveltekit-superforms/client";
-    export let form;
+    export let form = $page.data.datePicker;
 
     const theForm = superForm(form, { // incoming form with validators and taints
-      validators: formSchema,
-      taintedMessage: null
+      validators: formSchema
     });
     const { form: formStore } = theForm; // set validated form to inhouse var
     const df = new DateFormatter("en-US", { // date formatter
       dateStyle: "long"
     });
-    let value = $formStore.date_of_flight;
+    let value = $formStore.date_first_checked ? parseDate($formStore.date_first_checked) : undefined;
     let placeholder = today(getLocalTimeZone());
 
 </script>
 
 <DatePicker/>
 
-<Form.Root method="POST" {form} schema={formSchema} let:config>
+<Form.Root method="POST" controlled form={theForm} schema={formSchema} let:config>
     <Form.Field {config} name="min_cost">
         <Form.Item>
             <Form.Label>min_cost</Form.Label>
@@ -112,11 +112,11 @@
     </Form.Field>
     <Form.Field {config} name="date_first_checked">
         <Form.Item>
-            <Form.Label>date_first_checked</Form.Label>
+            <Form.Label for="date_first_checked">date_first_checked</Form.Label>
             <Popover.Root>
-                <Form.Control id="date" let:attrs>
+                <Form.Control id="date_first_checked" let:attrs>
                   <Popover.Trigger
-                    id="date"
+                    id="date_first_checked"
                     {...attrs}
                     class={cn(
                       buttonVariants({ variant: "default" }),
@@ -136,11 +136,11 @@
                     bind:placeholder
                     minValue={new CalendarDate(1900, 1, 1)}
                     maxValue={today(getLocalTimeZone())}
-                    calendarLabel="Date of birth"
+                    calendarLabel="date_first_checked"
                     initialFocus
                     onValueChange={(v) => {
                       if (v) {
-                        $formStore.date_first_checked = parseDate(v.toString());
+                        $formStore.date_first_checked = v.toString();
                       } else {
                         $formStore.date_first_checked = "";
                       }
