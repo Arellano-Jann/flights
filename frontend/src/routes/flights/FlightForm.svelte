@@ -1,5 +1,4 @@
 <script>
-    import DatePicker from "$lib/components/date-picker/DatePicker.svelte";
 
     // import { Form } from "$lib/components/ui/form"; // gives <Form.Root> is not a valid SSR component but idk why
     import * as Form from "$lib/components/ui/form";
@@ -34,8 +33,6 @@
     let placeholder = today(getLocalTimeZone());
 
 </script>
-
-<DatePicker/>
 
 <Form.Root method="POST" controlled form={theForm} schema={formSchema} let:config>
     <Form.Field {config} name="min_cost">
