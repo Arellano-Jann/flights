@@ -5,9 +5,7 @@
     import { formSchema } from "./schema";
     // https://github.com/huntabyte/shadcn-svelte/blob/main/apps/www/src/routes/examples/forms/profile-form.svelte
 
-    
-    import { page } from "$app/stores";
-    import { Calendar as CalendarIcon } from "lucide-svelte";
+    import { Calendar as CalendarIcon, Send } from "lucide-svelte";
     import {
         DateFormatter,
         getLocalTimeZone,
@@ -39,79 +37,78 @@
 <Form.Root method="POST" controlled form={theForm} schema={formSchema} let:config>
     <Form.Field {config} name="min_cost">
         <Form.Item>
-            <Form.Label>min_cost</Form.Label>
+            <Form.Label>Min Cost</Form.Label>
             <Form.Input placeholder="">placeholder</Form.Input>
-            <Form.Description>min_cost</Form.Description>
+            <Form.Description>Min cost of flight</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="max_cost">
         <Form.Item>
-            <Form.Label>max_cost</Form.Label>
+            <Form.Label>Max Cost</Form.Label>
             <Form.Input/>
-            <Form.Description>max_cost</Form.Description>
+            <Form.Description>Max cost of flight</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="avg_cost">
         <Form.Item>
-            <Form.Label>avg_cost</Form.Label>
-            <Form.Input value=5 />
-            <Form.Description>avg_cost</Form.Description>
+            <Form.Label>Average Cost</Form.Label>
+            <Form.Input/>
+            <Form.Description>Average cost of flight (calculated automatically if empty)</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="from_city">
         <Form.Item>
-            <Form.Label>from_city</Form.Label>
-            <Form.Input value=5/>
-            <Form.Description>from_city</Form.Description>
+            <Form.Label>City of Departure</Form.Label>
+            <Form.Input/>
+            <Form.Description>City where outgoing flight takes off</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="to_city">
         <Form.Item>
-            <Form.Label>to_city</Form.Label>
+            <Form.Label>City of Arrival</Form.Label>
             <Form.Input/>
-            <Form.Description>to_city</Form.Description>
+            <Form.Description>City where incoming flight lands</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="from_airport">
         <Form.Item>
-            <Form.Label>from_airport</Form.Label>
+            <Form.Label>Airport of Departure</Form.Label>
             <Form.Input/>
-            <Form.Description>from_airport</Form.Description>
+            <Form.Description>Airport where outgoing flight takes off</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="to_airport">
         <Form.Item>
-            <Form.Label>to_airport</Form.Label>
+            <Form.Label>Airport of Arrival</Form.Label>
             <Form.Input/>
-            <Form.Description>to_airport</Form.Description>
+            <Form.Description>Airport where incoming flight lands</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="airline">
         <Form.Item>
-            <Form.Label>airline</Form.Label>
+            <Form.Label>Airline</Form.Label>
             <Form.Input/>
-            <Form.Description>airline</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="flight_code">
         <Form.Item>
-            <Form.Label>flight_code</Form.Label>
+            <Form.Label>Flight Number</Form.Label>
             <Form.Input/>
-            <Form.Description>flight_code</Form.Description>
+            <Form.Description>Flight Number (i.e. DTK253)</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="date_first_checked">
         <Form.Item>
-            <Form.Label for="date_first_checked">date_first_checked</Form.Label>
+            <Form.Label for="date_first_checked">Price First Checked</Form.Label>
             <Popover.Root>
                 <Form.Control id="date_first_checked" let:attrs>
                     <Popover.Trigger
@@ -147,13 +144,13 @@
                     />
                 </Popover.Content>
             </Popover.Root>
-            <Form.Description>date_first_checked</Form.Description>
+            <Form.Description>Date the flight price was first checked</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="date_last_checked">
         <Form.Item>
-            <Form.Label>date_last_checked</Form.Label>
+            <Form.Label>Price Last Checked</Form.Label>
             <Popover.Root>
                 <Form.Control id="date_last_checked" let:attrs>
                     <Popover.Trigger
@@ -189,13 +186,13 @@
                     />
                 </Popover.Content>
             </Popover.Root>
-            <Form.Description>date_last_checked</Form.Description>
+            <Form.Description>Date the flight price was last checked</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="date_of_flight">
         <Form.Item>
-            <Form.Label>date_of_flight</Form.Label>
+            <Form.Label>Date of Flight</Form.Label>
             <Popover.Root>
                 <Form.Control id="date_of_flight" let:attrs>
                     <Popover.Trigger
@@ -230,13 +227,12 @@
                     />
                 </Popover.Content>
             </Popover.Root>
-            <Form.Description>date_of_flight</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="day_of_flight">
         <Form.Item>
-            <Form.Label>day_of_flight</Form.Label>
+            <Form.Label>Day of Flight</Form.Label>
             <Form.Select>
                 <Form.SelectTrigger
                     placeholder="Select a day of the week"
@@ -265,7 +261,7 @@
                     </Form.SelectItem>
                 </Form.SelectContent>
             </Form.Select>
-            <Form.Description>day_of_flight</Form.Description>
+            <Form.Description>Day of Flight</Form.Description>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
@@ -299,5 +295,6 @@
         </Form.Field>
     </Form.Item> -->
 
-    <Form.Button>Submit</Form.Button>
+    <Form.Button>
+        <Send class="ml-auto mr-2 h-4 w-4" /> Submit</Form.Button>
 </Form.Root>
