@@ -40,7 +40,7 @@
     <Form.Field {config} name="min_cost">
         <Form.Item>
             <Form.Label>min_cost</Form.Label>
-            <Form.Input>placeholder</Form.Input>
+            <Form.Input placeholder="">placeholder</Form.Input>
             <Form.Description>min_cost</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -56,7 +56,7 @@
     <Form.Field {config} name="avg_cost">
         <Form.Item>
             <Form.Label>avg_cost</Form.Label>
-            <Form.Input/>
+            <Form.Input value=5 />
             <Form.Description>avg_cost</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -64,7 +64,7 @@
     <Form.Field {config} name="from_city">
         <Form.Item>
             <Form.Label>from_city</Form.Label>
-            <Form.Input/>
+            <Form.Input value=5/>
             <Form.Description>from_city</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -238,7 +238,34 @@
     <Form.Field {config} name="day_of_flight">
         <Form.Item>
             <Form.Label>day_of_flight</Form.Label>
-            <Form.Input/>
+            <Form.Select>
+                <Form.SelectTrigger
+                    placeholder="Select a day of the week"
+                />
+                <Form.SelectContent>
+                    <Form.SelectItem value="Monday" label="Monday"
+                        >Monday
+                    </Form.SelectItem>
+                    <Form.SelectItem value="Tuesday" label="Tuesday"
+                        >Tuesday
+                    </Form.SelectItem>
+                    <Form.SelectItem value="Wednesday" label="Wednesday"
+                        >Wednesday
+                    </Form.SelectItem>
+                    <Form.SelectItem value="Thursday" label="Thursday"
+                        >Thursday
+                    </Form.SelectItem>
+                    <Form.SelectItem value="Friday" label="Friday"
+                        >Friday
+                    </Form.SelectItem>
+                    <Form.SelectItem value="Saturday" label="Saturday"
+                        >Saturday
+                    </Form.SelectItem>
+                    <Form.SelectItem value="Sunday" label="Sunday"
+                        >Sunday
+                    </Form.SelectItem>
+                </Form.SelectContent>
+            </Form.Select>
             <Form.Description>day_of_flight</Form.Description>
             <Form.Validation/>
         </Form.Item>
