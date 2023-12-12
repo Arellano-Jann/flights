@@ -38,7 +38,7 @@
     <Form.Field {config} name="min_cost">
         <Form.Item>
             <Form.Label>Min Cost</Form.Label>
-            <Form.Input placeholder="">placeholder</Form.Input>
+            <Form.Input class="w-1/3"/>
             <Form.Description>Min cost of flight</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -46,7 +46,7 @@
     <Form.Field {config} name="max_cost">
         <Form.Item>
             <Form.Label>Max Cost</Form.Label>
-            <Form.Input/>
+            <Form.Input class="w-1/3"/>
             <Form.Description>Max cost of flight</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -54,7 +54,7 @@
     <Form.Field {config} name="avg_cost">
         <Form.Item>
             <Form.Label>Average Cost</Form.Label>
-            <Form.Input/>
+            <Form.Input class="w-1/3"/>
             <Form.Description>Average cost of flight (calculated automatically if empty)</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -62,7 +62,7 @@
     <Form.Field {config} name="from_city">
         <Form.Item>
             <Form.Label>City of Departure</Form.Label>
-            <Form.Input/>
+            <Form.Input class="w-1/4"/>
             <Form.Description>City where outgoing flight takes off</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -70,7 +70,7 @@
     <Form.Field {config} name="to_city">
         <Form.Item>
             <Form.Label>City of Arrival</Form.Label>
-            <Form.Input/>
+            <Form.Input class="w-1/4"/>
             <Form.Description>City where incoming flight lands</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -78,7 +78,7 @@
     <Form.Field {config} name="from_airport">
         <Form.Item>
             <Form.Label>Airport of Departure</Form.Label>
-            <Form.Input/>
+            <Form.Input class="w-1/4"/>
             <Form.Description>Airport where outgoing flight takes off</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -86,7 +86,7 @@
     <Form.Field {config} name="to_airport">
         <Form.Item>
             <Form.Label>Airport of Arrival</Form.Label>
-            <Form.Input/>
+            <Form.Input class="w-1/4"/>
             <Form.Description>Airport where incoming flight lands</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -94,14 +94,14 @@
     <Form.Field {config} name="airline">
         <Form.Item>
             <Form.Label>Airline</Form.Label>
-            <Form.Input/>
+            <Form.Input class="w-1/2"/>
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
     <Form.Field {config} name="flight_code">
         <Form.Item>
             <Form.Label>Flight Number</Form.Label>
-            <Form.Input/>
+            <Form.Input class="w-1/2"/>
             <Form.Description>Flight Number (i.e. DTK253)</Form.Description>
             <Form.Validation/>
         </Form.Item>

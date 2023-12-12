@@ -1,7 +1,7 @@
-~~1. list flights (table)~~
-~~4. add flight (form)~~ button
+~~1. list flights (table)~~ full model, proper sizing,
+~~4. add flight (form)~~ ~~button~~ css
 ~~2. update flight (button -> form)~~ popup
-~~2a. delete flight (actions part)~~ active reload
+~~2a. delete flight (actions part)~~ active reload/invalidation, delete toast
 3. populate data tables
 3. filterFlight (filter table individually, like example)
 5. graphView - graph relations of all flights - nodal
