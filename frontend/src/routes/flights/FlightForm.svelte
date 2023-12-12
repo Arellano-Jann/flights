@@ -265,36 +265,8 @@
             <Form.Validation/>
         </Form.Item>
     </Form.Field>
-
-
-    <!-- <Form.Item>
-        <Form.Field {config} name="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Select>
-                <Form.SelectTrigger
-                    placeholder="Select a verified email to display"
-                />
-                <Form.SelectContent>
-                    <Form.SelectItem value="m@example.com" label="m@example.com"
-                        >m@example.com
-                    </Form.SelectItem>
-                    <Form.SelectItem value="m@google.com" label="m@google.com"
-                        >m@google.com
-                    </Form.SelectItem>
-                    <Form.SelectItem value="m@support.com" label="m@support.com"
-                        >m@support.com
-                    </Form.SelectItem>
-                </Form.SelectContent>
-            </Form.Select>
-            <Form.Description>
-                You can manage verified email addresses in your <a
-                    href="/examples/forms">email settings</a
-                >.
-            </Form.Description>
-            <Form.Validation />
-        </Form.Field>
-    </Form.Item> -->
-
     <Form.Button>
-        <Send class="ml-auto mr-2 h-4 w-4" /> Submit</Form.Button>
+        <Send class="ml-auto mr-2 h-4 w-4" /> 
+        Submit
+    </Form.Button>
 </Form.Root>
