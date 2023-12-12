@@ -218,7 +218,6 @@
                         bind:value={date_of_flight}
                         bind:placeholder
                         minValue={new CalendarDate(1900, 1, 1)}
-                        maxValue={today(getLocalTimeZone())}
                         calendarLabel="date_of_flight"
                         initialFocus
                         onValueChange={(v) => {
