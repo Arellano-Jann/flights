@@ -16,11 +16,11 @@
         today
     } from "@internationalized/date";
     import { cn } from "$lib/utils";
-    import { Button, buttonVariants } from "$lib/components/ui/button";
+    import { buttonVariants } from "$lib/components/ui/button";
     import { Calendar } from "$lib/components/ui/calendar";
     import * as Popover from "$lib/components/ui/popover";
     import { superForm } from "sveltekit-superforms/client";
-    export let form = $page.data.datePicker;
+    export let form;
 
     const theForm = superForm(form, { // incoming form with validators and taints
       validators: formSchema
@@ -29,7 +29,9 @@
     const df = new DateFormatter("en-US", { // date formatter
       dateStyle: "long"
     });
-    let value = $formStore.date_first_checked ? parseDate($formStore.date_first_checked) : undefined;
+    let date_first_checked = $formStore.date_first_checked ? parseDate($formStore.date_first_checked) : undefined;
+    let date_last_checked = $formStore.date_last_checked ? parseDate($formStore.date_last_checked) : undefined;
+    let date_of_flight = $formStore.date_of_flight ? parseDate($formStore.date_of_flight) : undefined;
     let placeholder = today(getLocalTimeZone());
 
 </script>
@@ -112,39 +114,39 @@
             <Form.Label for="date_first_checked">date_first_checked</Form.Label>
             <Popover.Root>
                 <Form.Control id="date_first_checked" let:attrs>
-                  <Popover.Trigger
-                    id="date_first_checked"
-                    {...attrs}
-                    class={cn(
-                      buttonVariants({ variant: "default" }),
-                      "w-[280px] pl-4 justify-start text-left font-normal",
-                      !value && "text-muted-foreground"
-                    )}
-                  >
-                    {value
-                      ? df.format(value.toDate(getLocalTimeZone()))
-                      : "Pick a date"}
-                    <CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-                  </Popover.Trigger>
+                    <Popover.Trigger
+                        id="date_first_checked"
+                        {...attrs}
+                        class={cn(
+                        buttonVariants({ variant: "default" }),
+                        "w-[280px] pl-4 justify-start text-left font-normal",
+                        !date_first_checked && "text-muted-foreground"
+                        )}
+                    >
+                        {date_first_checked
+                        ? df.format(date_first_checked.toDate(getLocalTimeZone()))
+                        : "Pick a date"}
+                        <CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
+                    </Popover.Trigger>
                 </Form.Control>
                 <Popover.Content class="w-auto p-0" side="top">
-                  <Calendar
-                    bind:value
-                    bind:placeholder
-                    minValue={new CalendarDate(1900, 1, 1)}
-                    maxValue={today(getLocalTimeZone())}
-                    calendarLabel="date_first_checked"
-                    initialFocus
-                    onValueChange={(v) => {
-                      if (v) {
-                        $formStore.date_first_checked = v.toString();
-                      } else {
-                        $formStore.date_first_checked = "";
-                      }
-                    }}
-                  />
+                    <Calendar
+                        bind:value={date_first_checked}
+                        bind:placeholder
+                        minValue={new CalendarDate(1900, 1, 1)}
+                        maxValue={today(getLocalTimeZone())}
+                        calendarLabel="date_first_checked"
+                        initialFocus
+                        onValueChange={(v) => {
+                            if (v) {
+                                $formStore.date_first_checked = v.toString();
+                            } else {
+                                $formStore.date_first_checked = "";
+                            }
+                        }}
+                    />
                 </Popover.Content>
-              </Popover.Root>
+            </Popover.Root>
             <Form.Description>date_first_checked</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -152,7 +154,41 @@
     <Form.Field {config} name="date_last_checked">
         <Form.Item>
             <Form.Label>date_last_checked</Form.Label>
-            <Form.Input/>
+            <Popover.Root>
+                <Form.Control id="date_last_checked" let:attrs>
+                    <Popover.Trigger
+                        id="date_last_checked"
+                        {...attrs}
+                        class={cn(
+                        buttonVariants({ variant: "default" }),
+                        "w-[280px] pl-4 justify-start text-left font-normal",
+                        !date_last_checked && "text-muted-foreground"
+                        )}
+                    >
+                        {date_last_checked
+                        ? df.format(date_last_checked.toDate(getLocalTimeZone()))
+                        : "Pick a date"}
+                        <CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
+                    </Popover.Trigger>
+                </Form.Control>
+                <Popover.Content class="w-auto p-0" side="top">
+                    <Calendar
+                        bind:value={date_last_checked}
+                        bind:placeholder
+                        minValue={new CalendarDate(1900, 1, 1)}
+                        maxValue={today(getLocalTimeZone())}
+                        calendarLabel="date_last_checked"
+                        initialFocus
+                        onValueChange={(v) => {
+                            if (v) {
+                                $formStore.date_last_checked = v.toString();
+                            } else {
+                                $formStore.date_last_checked = "";
+                            }
+                        }}
+                    />
+                </Popover.Content>
+            </Popover.Root>
             <Form.Description>date_last_checked</Form.Description>
             <Form.Validation/>
         </Form.Item>
@@ -160,7 +196,41 @@
     <Form.Field {config} name="date_of_flight">
         <Form.Item>
             <Form.Label>date_of_flight</Form.Label>
-            <Form.Input/>
+            <Popover.Root>
+                <Form.Control id="date_of_flight" let:attrs>
+                    <Popover.Trigger
+                        id="date_of_flight"
+                        {...attrs}
+                        class={cn(
+                        buttonVariants({ variant: "default" }),
+                        "w-[280px] pl-4 justify-start text-left font-normal",
+                        !date_of_flight && "text-muted-foreground"
+                        )}
+                    >
+                        {date_of_flight
+                        ? df.format(date_of_flight.toDate(getLocalTimeZone()))
+                        : "Pick a date"}
+                        <CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
+                    </Popover.Trigger>
+                </Form.Control>
+                <Popover.Content class="w-auto p-0" side="top">
+                    <Calendar
+                        bind:value={date_of_flight}
+                        bind:placeholder
+                        minValue={new CalendarDate(1900, 1, 1)}
+                        maxValue={today(getLocalTimeZone())}
+                        calendarLabel="date_of_flight"
+                        initialFocus
+                        onValueChange={(v) => {
+                            if (v) {
+                                $formStore.date_of_flight = v.toString();
+                            } else {
+                                $formStore.date_of_flight = "";
+                            }
+                        }}
+                    />
+                </Popover.Content>
+            </Popover.Root>
             <Form.Description>date_of_flight</Form.Description>
             <Form.Validation/>
         </Form.Item>
