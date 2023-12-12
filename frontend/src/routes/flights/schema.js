@@ -10,8 +10,8 @@ export const formSchema = z.object({
     to_airport: z.string().toUpperCase().max(3),
     airline: z.string(),
     flight_code: z.string(),
-    date_first_checked: z.string(),
-    date_last_checked: z.string(),
-    date_of_flight: z.string(),
+    date_first_checked: z.string().nullish().or(z.string().max(0)),
+    date_last_checked: z.string().nullish().or(z.string().max(0)),
+    date_of_flight: z.string().nullish().or(z.string().max(0)),
     day_of_flight: z.string().max(9)
 });
