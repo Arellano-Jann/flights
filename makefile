@@ -11,7 +11,7 @@ rmdockerconfig:
 	rm ~/.docker/config.json
 
 docker_image:
-	docker build -t deaddrop/backend:1.0 .
+	docker build -t flights/backend:1.0 .
 
 docker_run-%:
 	docker run -p 8000:8000 $*

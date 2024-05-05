@@ -37,7 +37,7 @@ services:
     command: make migrate admin_headless run_noreload
     env_file:
       # Expose .env.dev to Django's settings.py
-      - "./.env.dev"
+      - "./backend/.env.dev"
     # ports:
     #   - "8000:8000"
     # expose:
