@@ -1,0 +1,323 @@
+{
+    "airlines": {
+      "AA": {
+        "name": "American Airlines"
+      },
+      "AS": {
+        "name": "Alaska Airlines"
+      },
+      "B6": {
+        "name": "JetBlue Airways"
+      },
+      "DL": {
+        "name": "Delta Air Lines"
+      },
+      "F9": {
+        "name": "Frontier Airlines"
+      },
+      "NK": {
+        "name": "Spirit Airlines"
+      },
+      "UA": {
+        "name": "United Airlines"
+      }
+    },
+    "cities": {
+      "ATL": {
+        "name": "Atlanta"
+      },
+      "BOS": {
+        "name": "Boston"
+      },
+      "BUF": {
+        "name": "Buffalo"
+      },
+      "CLT": {
+        "name": "Charlotte"
+      },
+      "CMH": {
+        "name": "Columbus"
+      },
+      "DCA": {
+        "name": "Washington"
+      },
+      "DEN": {
+        "name": "Denver"
+      },
+      "DFW": {
+        "name": "Dallas-Fort Worth"
+      },
+      "DTW": {
+        "name": "Detroit"
+      },
+      "EWR": {
+        "name": "Newark"
+      },
+      "FLL": {
+        "name": "Fort Lauderdale"
+      },
+      "IAD": {
+        "name": "Dulles"
+      },
+      "IAH": {
+        "name": "Houston"
+      },
+      "JFK": {
+        "name": "New York"
+      },
+      "LAS": {
+        "name": "Las Vegas"
+      },
+      "LAX": {
+        "name": "Los Angeles"
+      },
+      "LGA": {
+        "name": "New York"
+      },
+      "MCO": {
+        "name": "Orlando"
+      },
+      "MIA": {
+        "name": "Miami"
+      },
+      "MSP": {
+        "name": "Minneapolis"
+      },
+      "ORD": {
+        "name": "Chicago"
+      },
+      "PHX": {
+        "name": "Phoenix"
+      },
+      "PIT": {
+        "name": "Pittsburgh"
+      },
+      "PSP": {
+        "name": "Palm Springs"
+      },
+      "RIC": {
+        "name": "Richmond"
+      },
+      "SEA": {
+        "name": "Seattle"
+      },
+      "SFO": {
+        "name": "San Francisco"
+      },
+      "SLC": {
+        "name": "Salt Lake City"
+      },
+      "STL": {
+        "name": "St Louis"
+      }
+    },
+    "airports": {
+      "ATL": {
+        "name": "Hartsfield Jackson Atlanta Intl"
+      },
+      "BOS": {
+        "name": "Logan Intl"
+      },
+      "BUF": {
+        "name": "Buffalo Niagara Intl"
+      },
+      "CLT": {
+        "name": "Charlotte Douglas Intl"
+      },
+      "CMH": {
+        "name": "John Glenn Columbus Intl"
+      },
+      "DCA": {
+        "name": "Ronald Reagan Washington National"
+      },
+      "DEN": {
+        "name": "Denver Intl"
+      },
+      "DFW": {
+        "name": "Dallas Fort Worth Intl"
+      },
+      "DTW": {
+        "name": "Detroit Metropolitan Wayne County"
+      },
+      "EWR": {
+        "name": "Newark Liberty Intl"
+      },
+      "FLL": {
+        "name": "Fort Lauderdale Hollywood Intl"
+      },
+      "IAD": {
+        "name": "Washington Dulles Intl"
+      },
+      "IAH": {
+        "name": "George Bush Intercontinental Houston"
+      },
+      "JFK": {
+        "name": "John F Kennedy Intl"
+      },
+      "LAS": {
+        "name": "Harry Reid Intl"
+      },
+      "LAX": {
+        "name": "Los Angeles Intl"
+      },
+      "LGA": {
+        "name": "La Guardia"
+      },
+      "MCO": {
+        "name": "Orlando Intl"
+      },
+      "MIA": {
+        "name": "Miami Intl"
+      },
+      "MSP": {
+        "name": "Minneapolis–Saint Paul Intl"
+      },
+      "ORD": {
+        "name": "Chicago O'Hare Intl"
+      },
+      "PHX": {
+        "name": "Phoenix Sky Harbor Intl"
+      },
+      "PIT": {
+        "name": "Pittsburgh Intl"
+      },
+      "PSP": {
+        "name": "Palm Springs Intl"
+      },
+      "RIC": {
+        "name": "Richmond Intl"
+      },
+      "SEA": {
+        "name": "Seattle–Tacoma Intl"
+      },
+      "SFO": {
+        "name": "San Francisco Intl"
+      },
+      "SLC": {
+        "name": "Salt Lake City Intl"
+      },
+      "STL": {
+        "name": "St Louis Lambert Intl"
+      }
+    },
+    "flights": {
+      "0124879": {
+        "segments": [
+          {
+            "airline": "B6",
+            "flight_number": 2974,
+            "departure": {
+              "time": "2024-05-07T20:46:00-07:00",
+              "airport": "LAX"
+            },
+            "arrival": {
+              "time": "2024-05-08T05:04:00-04:00",
+              "airport": "EWR"
+            },
+            "duration": 19080
+          }
+        ],
+        "duration": 19080,
+        "count": 1,
+        "data": "384b1b0|{\"count\":1,\"key\":\"0124879\",\"legs\":[[\"B62974\",\"LAX\",\"2024-05-07T20:46:00-07:00\",\"EWR\",\"2024-05-08T05:04:00-04:00\"]]}"
+      },
+      "fdcfa65": {
+        "segments": [
+          {
+            "airline": "AA",
+            "flight_number": 1640,
+            "departure": {
+              "time": "2024-05-07T23:59:00-07:00",
+              "airport": "LAX"
+            },
+            "arrival": {
+              "time": "2024-05-08T08:03:00-04:00",
+              "airport": "MIA"
+            },
+            "duration": 18240
+          },
+          {
+            "airline": "AA",
+            "flight_number": 1698,
+            "departure": {
+              "time": "2024-05-08T14:30:00-04:00",
+              "airport": "MIA"
+            },
+            "arrival": {
+              "time": "2024-05-08T17:29:00-04:00",
+              "airport": "LGA"
+            },
+            "duration": 10740
+          }
+        ],
+        "duration": 52200,
+        "count": 2,
+        "data": "4acb807|{\"count\":2,\"key\":\"fdcfa65\",\"legs\":[[\"AA1640\",\"LAX\",\"2024-05-07T23:59:00-07:00\",\"MIA\",\"2024-05-08T08:03:00-04:00\"],[\"AA1698\",\"MIA\",\"2024-05-08T14:30:00-04:00\",\"LGA\",\"2024-05-08T17:29:00-04:00\"]]}"
+      },
+      "fdf1117": {
+        "segments": [
+          {
+            "airline": "AA",
+            "flight_number": 2915,
+            "departure": {
+              "time": "2024-05-07T12:07:00-07:00",
+              "airport": "LAX"
+            },
+            "arrival": {
+              "time": "2024-05-07T20:09:00-04:00",
+              "airport": "MIA"
+            },
+            "duration": 18120
+          },
+          {
+            "airline": "AA",
+            "flight_number": 1692,
+            "departure": {
+              "time": "2024-05-08T08:35:00-04:00",
+              "airport": "MIA"
+            },
+            "arrival": {
+              "time": "2024-05-08T11:43:00-04:00",
+              "airport": "EWR"
+            },
+            "duration": 11280
+          }
+        ],
+        "duration": 74160,
+        "count": 2,
+        "data": "2797e5e|{\"count\":2,\"key\":\"fdf1117\",\"legs\":[[\"AA2915\",\"LAX\",\"2024-05-07T12:07:00-07:00\",\"MIA\",\"2024-05-07T20:09:00-04:00\"],[\"AA1692\",\"MIA\",\"2024-05-08T08:35:00-04:00\",\"EWR\",\"2024-05-08T11:43:00-04:00\"]]}"
+      }
+    },
+    "itineraries": {
+      "outbound": [
+        {
+          "data": "8e44b1d|{\"cost\":43700,\"counts\":{\"adults\":1,\"children\":0,\"infants_lap\":0,\"infants_seat\":0},\"depart\":\"2024-05-07\",\"fare_class\":\"economy\",\"from\":\"LAX\",\"key\":\"0124879\",\"return\":\"\",\"sort\":\"cost\",\"source\":[{\"cost\":43700,\"source\":{\"FAST\":[1714936282,43700]}}],\"to\":\"NYC\"}",
+          "flight": "0124879",
+          "one_way_price": 43700
+        }
+      ]
+    },
+    "info": {
+      "from": {
+        "city": "Los Angeles",
+        "state": "California",
+        "country": "United States",
+        "airports": [
+          "LAX"
+        ]
+      },
+      "to": {
+        "city": "New York",
+        "state": "New York",
+        "country": "United States",
+        "airports": [
+          "EWR",
+          "JFK",
+          "LGA"
+        ]
+      }
+    },
+    "incomplete": true,
+    "show_loading": false,
+    "duration": 1.40235590934753
+  }
