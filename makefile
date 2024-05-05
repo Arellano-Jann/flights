@@ -2,8 +2,10 @@ algo:
 	python3 algo.py
 
 pg_dump-%:
-	docker exec -it db bash -c "pg_dump -U admin -d flights > /$*.sql"
-	docker cp db:/$*.sql $*.sql
+	docker exec -it db bash -c "pg_dump -U admin -d flights -s > /$*_schema.sql"
+	docker exec -it db bash -c "pg_dump -U admin -d flights -a > /$*_data.sql"
+	docker cp db:/$*_schema.sql $*_schema.sql
+	docker cp db:/$*_data.sql $*_data.sql
 
 startdocker:
 	sudo dockerd
