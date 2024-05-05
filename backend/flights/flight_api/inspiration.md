@@ -1,0 +1,1 @@
+inspired by: https://github.dev/hhursev/recipe-scrapers/blob/main/recipe_scrapers/_utils.py
