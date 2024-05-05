@@ -1,0 +1,125 @@
+version: '3'
+services:
+
+  traefik:
+    container_name: traefik
+    # The official v2 Traefik docker image
+    image: traefik:v2.11
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api.insecure=true --providers.docker
+    networks:
+      proxy:
+        # makes sure that containers can access the reverse proxy hostnames thru aliasing
+        # i.e. backend.localhost:8000 becomes backend.localhost thru this
+        aliases:
+          - "backend.localhost"
+          - "frontend.localhost"
+    ports:
+      # The HTTP port
+      - "80:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    expose:
+      - "80"
+      - "8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  backend:
+    container_name: backend
+    build: ./backend/.
+    # Agents may install libraries, which could cause Django to reload.
+    # --noreload prevents that from happening in the middle of an agent install.
+    #
+    # admin_headless is used to create a default superuser. Naturally, you
+    # should remove this in production.
+    command: make migrate admin_headless run_noreload
+    env_file:
+      # Expose .env.dev to Django's settings.py
+      - "./.env.dev"
+    # ports:
+    #   - "8000:8000"
+    # expose:
+    #   - "8000"
+    networks:
+      proxy:
+        # makes sure that backend:8000 can be accessed as backend.localhost:8000
+        aliases:
+          - backend.localhost
+    labels:
+      - "traefik.docker.network=flights_proxy"
+      - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
+    volumes:
+      # Make the host's Docker daemon accessible, allows payloads to spin up
+      # their own sibling containers
+      - /var/run/docker.sock:/var/run/docker.sock
+      # This allows the package manager to work across containers. Of course,
+      # this runs a few risks on its own. Ditto for placing things in the media
+      # folder.
+      - packages:/app/packages
+      - media:/app/media
+    depends_on:
+      - "db"
+
+  # https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/
+  db:
+    container_name: db
+    image: postgres:16
+    volumes:
+      # NOTE: This makes data persist beyond the lifetime of the container! You'll 
+      # need to run `make flush` if you want to start over (which occurs in 
+      # entrypoint.sh by default).
+      - postgres_data:/var/lib/postgresql/data/
+      # This is just here so the entrypoint script can nuke the applicable
+      # directories if needed.
+      - packages:/app/packages
+      - media:/app/media
+    environment:
+      # Should match some of the relevant keys in .env.
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=flights
+    # ports:
+    #   - "5432:5432"
+    # expose:
+    #   - "5432"
+    networks:
+      - proxy
+
+  frontend:
+    container_name: frontend
+    # for now add a comment mentioning something along the lines of this assuming a specific directory structure, where the frontend is in the same parent folder as the backend
+    build: ./frontend/.
+    # ports:
+    #   - "5173:5173"
+    # expose:
+    #   - "5173"
+    networks:
+      proxy:
+        aliases:
+          - frontend.localhost
+    labels:
+      - "traefik.docker.network=flights_proxy"
+      - "traefik.http.routers.frontend.rule=Host(`frontend.localhost`)"
+    volumes:
+      # https://stackoverflow.com/questions/74680419/dockerized-sveltkit-app-hot-reload-not-working
+      # these are relative to docker compose, not to the build key
+      - ./frontend/src:/app/src
+      - ./frontend/static:/app/static
+      - ./frontend/vite.config.js:/app/vite.config.js
+      # - ./frontend/tsconfig.json:/app/tsconfig.json
+      - ./frontend/svelte.config.js:/app/svelte.config.js
+    command: npm run dev
+
+# Allows data to persist. Particularly important for the package manager, since
+# it needs different containers all operating on the same data.
+volumes:
+  postgres_data:
+  packages:
+  media:
+
+# creates a manual network using bridge to bridge all containers together
+networks:
+  proxy: # network name is ???
+    driver: bridge

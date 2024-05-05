@@ -1,26 +1,29 @@
-all:
+algo:
 	python3 algo.py
 
-dep:
-	pip3 install numpy pandas matplotlib networkx seaborn
+startdocker:
+	sudo dockerd
 
-svelte:
-	# npm create svelte@latest frontend
-	# cd frontend
-	npm install
+rmdocker:
+	rm -rf  ~/.docker
 
-django:
-	pip3 install django django-rest-framework django-cors-headers
-	django-admin startproject backend
+rmdockerconfig:
+	rm ~/.docker/config.json
 
-backend:
-	python3 manage.py makemigrations
-	python3 manage.py migrate
-	python3 manage.py runserver
+docker_image:
+	docker build -t deaddrop/backend:1.0 .
 
-fresh:
-	sudo apt-get update
-	sudo apt install python3-pip3
-	sudo apt install make
-	make dep
-	make all
+docker_run-%:
+	docker run -p 8000:8000 $*
+
+docker_compose_up:
+	docker-compose up -d --build
+
+docker_compose_down:
+	docker-compose down
+
+docker_compose_down_all:
+	docker-compose down --rmi all --volumes
+
+docker_compose_stop:
+	docker-compose stop

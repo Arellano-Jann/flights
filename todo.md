@@ -7,8 +7,8 @@
 5. graphView - graph relations of all flights - nodal
 
 6. solve best path - (input num of destinations to visit)
-- django models - 5 for the 
-- django postgres switch (be able to pg_dump)
+~~- django models - 5 for the ~~
+- django postgres switch (be able to pg_dump) and docker
 - connect skiplaggedAPI - https://stackoverflow.com/questions/63422298/how-do-i-scrape-data-using-selenium-in-python-from-a-webpage-that-adds-div-on-sc
 - connect skyscannerAPI - https://rapidapi.com/ntd119/api/sky-scanner3
 - add airport code db ??? - https://rapidapi.com/leopieters/api/iata-and-icao/

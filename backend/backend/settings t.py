@@ -15,23 +15,32 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Here
+MEDIA_URL = '/media/'
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-83zga=g0cc*ofed(6nabi8qc560(+5s3+r&7mj(1#um&9@e075"
+SECRET_KEY = "django-insecure-&h=!n9a_qro&o^zb-^d@_9(avb*cte^dw796a0*0=#b2pp2$!e"
+
+# The server's public and private key as PEM-encoded Ed25519 keys, in base64.
+# When not set, message signing is not performed (though this is up to the
+# agent's protocols).
 SERVER_PUBLIC_KEY = os.environ.get("SERVER_PUBLIC_KEY", "")
 SERVER_PRIVATE_KEY = os.environ.get("SERVER_PRIVATE_KEY", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Allow the container hosts
 ALLOWED_HOSTS = [
     'backend',
+    'localhost',
+    '127.0.0.1',
     'backend.localhost'
-    ]
+]
 
 
 # Application definition
@@ -43,11 +52,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
-    "flights.apps.FlightsConfig",
+    "backend.apps.BackendConfig",
     "rest_framework",
+    "rest_framework.authtoken",
     "corsheaders",
     "django_filters",
+    "django_celery_results"
 ]
 
 REST_FRAMEWORK = {
@@ -60,6 +70,13 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
         'backend.filters.AllDjangoFilterBackend',
         'rest_framework_datatables.filters.DatatablesFilterBackend',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework_datatables.pagination.DatatablesPageNumberPagination',
 }
@@ -79,19 +96,15 @@ MIDDLEWARE = [
 
 ]
 
-REST_FRAMEWORK = {
-    'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%d'],
-}
-
 CORS_ALLOW_CREDENTIALS = True
 
-# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5173', # Svelte (same machine)
     'http://frontend:5173', # Svelte (in Docker)
 ]
 
-ROOT_URLCONF = "backend.urls"
+ROOT_URLCONF = "deaddrop.urls"
 
 TEMPLATES = [
     {
@@ -109,12 +122,15 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "backend.wsgi.application"
+WSGI_APPLICATION = "deaddrop.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+# https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/
+#
+# This defaults to the sqlite database by default, but effectively allows
+# the Postgres database to be declared through environment variables.
 DATABASES = {
     "default": {
         "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
@@ -167,3 +183,30 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery stuff
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BACKEND", "redis://redis:6379/0") # this should be django db
+
+# CELERY_TASK_SERIALIZER = 'pickle'
+# CELERY_ACCEPT_CONTENT = ['json', 'pickle']
+# Note that the above is, naturally, quite risky. Avoid as long as possible.
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
+
+# https://github.com/celery/django-celery-results/issues/130#issuecomment-583319233
+# This does track if the task is started and correctly creates a TaskResult,
+# but it's missing a lot of information. The method used in tasks.py is preferred
+# instead.
+# CELERY_TASK_TRACK_STARTED = True
+
+# https://github.com/celery/django-celery-results/issues/326
+# Fixes the task name and arguments getting overwritten with None after the task
+# finishes.
+CELERY_RESULT_EXTENDED = True
+
+# Default directories for the package manager
+AGENT_PACKAGE_DIR = "packages/agents"
+PROTOCOL_PACKAGE_DIR = "packages/protocols"
+
