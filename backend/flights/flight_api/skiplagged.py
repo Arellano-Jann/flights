@@ -5,6 +5,7 @@ class Skiplagged():
     def __init__(self, base_url='https://skiplagged.com/api/search.php?', headers=None, *args, **kwargs) -> None:
         self.base_url = base_url
         self.headers = headers
+        self.query_results = None
         
     def search(
         self, 
@@ -34,6 +35,6 @@ class Skiplagged():
             number = flight_number['flight']
             print('Flight Details : ', flight_search['flights'][number])
             print('-' * 100) 
-        flight_number = flight_number['flight']
-        flight_price = flight_number
-        return flight_search, 
+        
+        self.query_results = flight_search
+        return flight_search
