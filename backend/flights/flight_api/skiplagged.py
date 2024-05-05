@@ -2,9 +2,10 @@ import requests
 from ._utils import todays_date, add_days_to_today
 
 class Skiplagged():
-    def __init__(self, base_url='https://skiplagged.com/api/search.php?', headers=None, *args, **kwargs) -> None:
+    def __init__(self, base_url='https://skiplagged.com/api/search.php', headers=None, *args, **kwargs) -> None:
         self.base_url = base_url
         self.headers = headers
+        self.querystring = None
         self.query_results = None
         
     def search(
@@ -20,13 +21,21 @@ class Skiplagged():
             depart_date = todays_date()
         if return_date is None:
             return_date = add_days_to_today()
+            
+        self.querystring = {
+            "from": str(from_source),
+            "to": str(to_destination),
+            "depart": str(depart_date),
+            "return": str(return_date),
+            "format": "v3",
+            "counts%5Badults%5D": str(adult_count),
+            "counts%5Bchildren%5D": str(child_count)
+        }
         
-        API_URL = self.base_url + 'from=' + str(from_source) + '&to=' + str(to_destination) + '&depart=' + str(depart_date) + '&'\
-            'return=' + str(return_date) + '&format=v3&counts%5Badults%5D=' + str(adult_count) + '&counts%5Bchildren%5D=' + str(child_count)
-        print('URL created: ', API_URL)
+        response = requests.get(self.base_url, params=self.querystring)
+        print('URL created: ', response.url)
         
-        flight_search = requests.get(API_URL)
-        flight_search = flight_search.json()
+        flight_search = response.json()
         
         for flight_number in flight_search['itineraries']['outbound']:
             print('-' * 100)
