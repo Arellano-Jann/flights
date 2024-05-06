@@ -9,7 +9,7 @@
     
     async function clickDelete() {
         // fetch delete
-        const res = await fetch(`http://127.0.0.1:8000/backend/flights/${uuid}`, {
+        const res = await fetch(`http://backend.localhost/backend/flights/${uuid}`, {
             method: 'DELETE'
         })
         .then(res => {

@@ -35,7 +35,8 @@ class Skiplagged():
         adult_count: str = '1',
         child_count: str = '0',
         sort: str = 'cost', # cost, duration, path
-        one_way: bool = True
+        one_way: bool = True,
+        offset: bool = False
     ):
         """_summary_
 
@@ -54,7 +55,7 @@ class Skiplagged():
             _type_: _description_
         """
         if depart_date is None:
-            depart_date = todays_date()
+            depart_date = todays_date(offset)
         if return_date is None and not one_way:
             return_date = add_days_to_today()
         if one_way:
@@ -133,7 +134,7 @@ class Skiplagged():
             }
             lowest_prices[flight_key] = flight_details
         
-        return 
+        return lowest_prices
     
     def get_iata_codes(self):
         iata_codes = {

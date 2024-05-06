@@ -18,7 +18,7 @@ export const actions = {
         });
       }
       console.log(form.data)
-      const res = await fetch('http://127.0.0.1:8000/backend/flights/', {
+      const res = await fetch('http://backend.localhost/backend/flights/', {
         method: 'POST',
         mode: "cors",
         headers: {

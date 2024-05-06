@@ -88,8 +88,10 @@ class APIViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['get'])
     def get_skiplagged_data(self, request):
         skiplagged_api = skiplagged.Skiplagged()
-        skiplagged_search = skiplagged_api.search(from_source="LAX")
-        return Response()
+        skiplagged_search = skiplagged_api.search(offset=True)
+        lowest_priced_flights = skiplagged_api.get_lowest_price(3)
+        
+        return Response(lowest_priced_flights)
         
         
 
