@@ -16,7 +16,7 @@ run_noreload:
 #
 # In turn, we manually invoke this first.
 migrate:
-	python3 manage.py makemigrations
+	# python3 manage.py makemigrations
 	python3 manage.py migrate
 
 test:
