@@ -118,7 +118,7 @@ COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$600000$mCdvlBUFI8twUmwN6ON7qZ$6jGFgNlxlB8mWSujCx+I6EEjBHlLkzmzzmSvHSIBqMQ=	\N	t	admin			unrdeaddrop@gmail.com	t	t	2024-05-06 04:57:41.068916+00
+1	pbkdf2_sha256$600000$GzHo6nAC6z0d8x1r9zpF4w$PnSza5TIUOGLl7ruW0Np5MLbDqmwMBKkf/YfGmajJZY=	\N	t	admin			unrdeaddrop@gmail.com	t	t	2024-05-06 06:48:38.341738+00
 \.
 
 
@@ -151,24 +151,24 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 --
 
 COPY public.django_migrations (id, app, name, applied) FROM stdin;
-1	contenttypes	0001_initial	2024-05-06 04:50:45.652495+00
-2	auth	0001_initial	2024-05-06 04:50:45.822362+00
-3	admin	0001_initial	2024-05-06 04:50:45.851316+00
-4	admin	0002_logentry_remove_auto_add	2024-05-06 04:50:45.86055+00
-5	admin	0003_logentry_add_action_flag_choices	2024-05-06 04:50:45.876769+00
-6	contenttypes	0002_remove_content_type_name	2024-05-06 04:50:45.894053+00
-7	auth	0002_alter_permission_name_max_length	2024-05-06 04:50:45.901492+00
-8	auth	0003_alter_user_email_max_length	2024-05-06 04:50:45.91083+00
-9	auth	0004_alter_user_username_opts	2024-05-06 04:50:45.91954+00
-10	auth	0005_alter_user_last_login_null	2024-05-06 04:50:45.940771+00
-11	auth	0006_require_contenttypes_0002	2024-05-06 04:50:45.94428+00
-12	auth	0007_alter_validators_add_error_messages	2024-05-06 04:50:45.951671+00
-13	auth	0008_alter_user_username_max_length	2024-05-06 04:50:45.967108+00
-14	auth	0009_alter_user_last_name_max_length	2024-05-06 04:50:45.976047+00
-15	auth	0010_alter_group_name_max_length	2024-05-06 04:50:45.987466+00
-16	auth	0011_update_proxy_permissions	2024-05-06 04:50:45.998908+00
-17	auth	0012_alter_user_first_name_max_length	2024-05-06 04:50:46.008444+00
-18	sessions	0001_initial	2024-05-06 04:50:46.067033+00
+1	contenttypes	0001_initial	2024-05-06 06:44:44.071413+00
+2	auth	0001_initial	2024-05-06 06:44:44.157519+00
+3	admin	0001_initial	2024-05-06 06:44:44.182041+00
+4	admin	0002_logentry_remove_auto_add	2024-05-06 06:44:44.188904+00
+5	admin	0003_logentry_add_action_flag_choices	2024-05-06 06:44:44.195474+00
+6	contenttypes	0002_remove_content_type_name	2024-05-06 06:44:44.210181+00
+7	auth	0002_alter_permission_name_max_length	2024-05-06 06:44:44.217483+00
+8	auth	0003_alter_user_email_max_length	2024-05-06 06:44:44.224136+00
+9	auth	0004_alter_user_username_opts	2024-05-06 06:44:44.230446+00
+10	auth	0005_alter_user_last_login_null	2024-05-06 06:44:44.236852+00
+11	auth	0006_require_contenttypes_0002	2024-05-06 06:44:44.239574+00
+12	auth	0007_alter_validators_add_error_messages	2024-05-06 06:44:44.245949+00
+13	auth	0008_alter_user_username_max_length	2024-05-06 06:44:44.256012+00
+14	auth	0009_alter_user_last_name_max_length	2024-05-06 06:44:44.262236+00
+15	auth	0010_alter_group_name_max_length	2024-05-06 06:44:44.272376+00
+16	auth	0011_update_proxy_permissions	2024-05-06 06:44:44.281584+00
+17	auth	0012_alter_user_first_name_max_length	2024-05-06 06:44:44.287561+00
+18	sessions	0001_initial	2024-05-06 06:44:44.304852+00
 \.
 
 
@@ -185,7 +185,6 @@ COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 --
 
 COPY public.flights_aggregator (id, name) FROM stdin;
-1100b22c-8990-4dc1-b7b5-6d5e8c475189	Google Flights
 \.
 
 
@@ -194,7 +193,6 @@ COPY public.flights_aggregator (id, name) FROM stdin;
 --
 
 COPY public.flights_airline (iata_code, name) FROM stdin;
-AA	American Airlines
 \.
 
 
@@ -203,7 +201,6 @@ AA	American Airlines
 --
 
 COPY public.flights_city (code, name) FROM stdin;
-ANGEL	Los Angeles
 \.
 
 
@@ -212,7 +209,6 @@ ANGEL	Los Angeles
 --
 
 COPY public.flights_airport (iata_code, city_id) FROM stdin;
-LAX	ANGEL
 \.
 
 
@@ -221,7 +217,6 @@ LAX	ANGEL
 --
 
 COPY public.flights_flight (id, min_cost, max_cost, avg_cost, airline_id, from_airport_id, to_airport_id, date_first_checked, date_last_checked, date_of_flight, day_of_flight) FROM stdin;
-65934691-4fb6-4b04-8cf4-8292099db29f	90	100	95	AA	LAX	LAX	2024-05-05	2024-05-05	2024-05-23	Thursday
 \.
 
 
@@ -238,7 +233,6 @@ COPY public.flights_aggflight (id, aggregator_id, flight_id) FROM stdin;
 --
 
 COPY public.flights_airport_airline (id, airport_id, airline_id) FROM stdin;
-1	LAX	AA
 \.
 
 
@@ -317,7 +311,7 @@ SELECT pg_catalog.setval('public.django_migrations_id_seq', 18, true);
 -- Name: flights_airport_airline_id_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
 --
 
-SELECT pg_catalog.setval('public.flights_airport_airline_id_seq', 1, true);
+SELECT pg_catalog.setval('public.flights_airport_airline_id_seq', 1, false);
 
 
 --

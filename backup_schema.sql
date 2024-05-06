@@ -334,7 +334,7 @@ ALTER TABLE public.flights_airline OWNER TO admin;
 
 CREATE TABLE public.flights_airport (
     iata_code character varying(3) NOT NULL,
-    city_id character varying(6) NOT NULL
+    city_id character varying(6)
 );
 
 
@@ -562,6 +562,14 @@ ALTER TABLE ONLY public.flights_aggflight
 
 
 --
+-- Name: flights_aggregator flights_aggregator_name_key; Type: CONSTRAINT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.flights_aggregator
+    ADD CONSTRAINT flights_aggregator_name_key UNIQUE (name);
+
+
+--
 -- Name: flights_aggregator flights_aggregator_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
@@ -728,6 +736,13 @@ CREATE INDEX flights_aggflight_aggregator_id_4483d2d4 ON public.flights_aggfligh
 --
 
 CREATE INDEX flights_aggflight_flight_id_e39362c6 ON public.flights_aggflight USING btree (flight_id);
+
+
+--
+-- Name: flights_aggregator_name_09893f17_like; Type: INDEX; Schema: public; Owner: admin
+--
+
+CREATE INDEX flights_aggregator_name_09893f17_like ON public.flights_aggregator USING btree (name text_pattern_ops);
 
 
 --
