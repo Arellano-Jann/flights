@@ -294,6 +294,11 @@
           "data": "8e44b1d|{\"cost\":43700,\"counts\":{\"adults\":1,\"children\":0,\"infants_lap\":0,\"infants_seat\":0},\"depart\":\"2024-05-07\",\"fare_class\":\"economy\",\"from\":\"LAX\",\"key\":\"0124879\",\"return\":\"\",\"sort\":\"cost\",\"source\":[{\"cost\":43700,\"source\":{\"FAST\":[1714936282,43700]}}],\"to\":\"NYC\"}",
           "flight": "0124879",
           "one_way_price": 43700
+        },
+        {
+          "data": "a009920|{\"cost\":14200,\"counts\":{\"adults\":1,\"children\":0,\"infants_lap\":0,\"infants_seat\":0},\"depart\":\"2024-05-07\",\"fare_class\":\"economy\",\"from\":\"LAX\",\"key\":\"6527a8b\",\"return\":\"\",\"savings\":[5700,17200,29500],\"sort\":\"cost\",\"source\":[{\"cost\":14200,\"source\":{\"FAST\":[1714936282,14200]}},{\"cost\":14200,\"source\":{\"FAST\":[1714936282,14200]}}],\"to\":\"NYC\"}",
+          "flight": "6527a8b",
+          "one_way_price": 14200
         }
       ]
     },
