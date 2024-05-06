@@ -1,6 +1,14 @@
 from rest_framework import serializers, fields
 from rest_framework.validators import ValidationError
-from flights.models import Flight
+from flights.models import (
+    City, 
+    Airline,
+    Airport,
+    Aggregator,
+    Flight,
+    Agg_Flight,
+    Historical_Data,
+    )
 from django.contrib.auth.models import User
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -26,8 +34,43 @@ class SignUpSerializer(serializers.ModelSerializer):
         return self.username
     
 
+class CitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = '__all__'
+        
+        
+class AirlineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Airline
+        fields = '__all__'
+        
+        
+class AirportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Airport
+        fields = '__all__'
+        
+        
+class AggregatorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Aggregator
+        fields = '__all__'
+        
+        
 class FlightSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Flight
+        fields = '__all__'
+        
+        
+class Agg_FlightSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Agg_Flight
+        fields = '__all__'
+
+        
+class Historical_DataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Historical_Data
         fields = '__all__'

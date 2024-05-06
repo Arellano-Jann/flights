@@ -1,6 +1,8 @@
 import requests
 from _utils import todays_date, add_days_to_today
 
+# TODO: Create a full-featured API of this
+
 class Skiplagged():
     def __init__(self, base_url='https://skiplagged.com/api/search.php', headers=None, *args, **kwargs) -> None:
         self.base_url = base_url

@@ -53,7 +53,7 @@ class Flight(models.Model):
         return self.date_of_flight + ': ' + self.from_airport + ' to ' + self.to_airport
     
 
-class Agg_Flights(models.Model):
+class Agg_Flight(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     aggregator = models.ForeignKey(Aggregator, on_delete=models.CASCADE, related_name="aggregator") # Aggregator
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name="flight") # City that Airport is in
