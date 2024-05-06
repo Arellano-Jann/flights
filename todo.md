@@ -12,7 +12,7 @@
 ~~- connect skiplaggedAPI - https://stackoverflow.com/questions/63422298/how-do-i-scrape-data-using-selenium-in-python-from-a-webpage-that-adds-div-on-sc~~
 - connect skyscannerAPI - https://rapidapi.com/ntd119/api/sky-scanner3
 - add airport code db ??? - https://rapidapi.com/leopieters/api/iata-and-icao/
-- create routes in django
+~~- create routes in django~~
 - add button to pull API info into own DB
 - display db on frontend
 - add form to push form into own DB
