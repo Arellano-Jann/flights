@@ -85,11 +85,30 @@ class APIViewSet(viewsets.ViewSet):
     def list(self, request):
         return Response()
     
+    # breaks the get by having side effects
     @action(detail=False, methods=['get'])
     def get_skiplagged_data(self, request):
         skiplagged_api = skiplagged.Skiplagged()
         skiplagged_search = skiplagged_api.search(offset=True)
         lowest_priced_flights = skiplagged_api.get_lowest_price(3)
+        
+        for key, value in lowest_priced_flights.items():
+            one_way_price = value.get('one_way_price')
+            from_source = value.get('from_source')
+            to_source = value.get('to_source')
+            date_checked = value.get('date_checked')
+            
+            airline = value.get('airline')
+            flight_number = value.get('flight_number')
+            flight_date = value.get('flight_date')
+            
+        
+        # Airline.objects.get_or_create(iata_code=airline)
+        # Airport.objects.get_or_create()
+        # Aggregator.objects.get_or_create()
+        # Flight.objects.get_or_create()
+        # HistoricalData.objects.get_or_create()
+        
         
         return Response(lowest_priced_flights)
         

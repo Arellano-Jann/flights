@@ -1,6 +1,6 @@
 import requests
 # from ._utils import todays_date, add_days_to_today
-from flights.flight_api._utils import todays_date, add_days_to_today
+from flights.flight_api._utils import todays_date, add_days_to_today, convert_date_format
 
 # TODO: Create a full-featured API of this
 
@@ -115,6 +115,36 @@ class Skiplagged():
         airport = arrival.get('airport', None)
         return airport
     
+    def get_airline(self, flight_key: str):
+        # return self.query_results['flights'][flight_key]['segments'][0]['airline']
+        flights = self.query_results.get('flights', {})
+        flight_data = flights.get(flight_key, {})
+        segments = flight_data.get('segments', [])
+        first_segment = segments[0] if segments else {}
+        airline = first_segment.get('airline', None)
+        return airline
+    
+    def get_flight_numbers(self, flight_key: str):
+        # return self.query_results['flights'][flight_key]['segments'][0]['flight_number']
+        flight_numbers = []
+        flights = self.query_results.get('flights', {})
+        flight_data = flights.get(flight_key, {})
+        segments = flight_data.get('segments', [])
+        for segment in segments:
+            flight_number = segment.get('flight_number', None)
+            flight_numbers.append(flight_number)
+        return flight_numbers
+    
+    def get_flight_date(self, flight_key: str):
+        # return self.query_results['flights'][flight_key]['segments'][0]['departure']['time']
+        flights = self.query_results.get('flights', {})
+        flight_data = flights.get(flight_key, {})
+        segments = flight_data.get('segments', [])
+        last_segment = segments[0] if segments else {}
+        arrival = last_segment.get('departure', {})
+        flight_date = arrival.get('time', None)
+        return convert_date_format(flight_date)
+    
     def get_lowest_price(self, num: int = 1):
         """Gets the num lowest flights by price
 
@@ -131,6 +161,10 @@ class Skiplagged():
                 'one_way_price': flight.get('one_way_price', 99999),
                 'from_source': self.get_source_airport(flight_key),
                 'to_dest': self.get_dest_airport(flight_key),
+                'date_checked': todays_date(),
+                'airline': self.get_airline(flight_key),
+                'flight_number': self.get_flight_numbers(flight_key),
+                'flight_date': self.get_flight_date(flight_key),
             }
             lowest_prices[flight_key] = flight_details
         

@@ -90,8 +90,8 @@ services:
     container_name: frontend
     # for now add a comment mentioning something along the lines of this assuming a specific directory structure, where the frontend is in the same parent folder as the backend
     build: ./frontend/.
-    # ports:
-    #   - "5173:5173"
+    ports:
+      - "5173:5173"
     # expose:
     #   - "5173"
     networks:

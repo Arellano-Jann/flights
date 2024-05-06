@@ -34,3 +34,6 @@ def add_days_to_today(days_to_add: int = 1) -> str:
     # Format the future date as yyyy-mm-dd
     formatted_future_date = future_date.strftime('%Y-%m-%d')
     return formatted_future_date
+
+def convert_date_format(date: str) -> str:
+    return datetime.fromisoformat(date).strftime('%Y-%m-%d')

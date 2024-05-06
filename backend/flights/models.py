@@ -25,7 +25,7 @@ class Airport(models.Model):
     
 class Aggregator(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.TextField(blank=True, null=True) # Aggregator Source Name
+    name = models.TextField(blank=True, null=True, unique=True) # Aggregator Source Name
 
 
 class Flight(models.Model):

@@ -2,6 +2,7 @@
 
 Get docker compose and then
 `make docker_compose_up`
+backend.localhost is the intended frontend for this project currently
 
 WRITE A SCRIPT TO BACKFILL IF DATA ISN'T FILLED YET
 
