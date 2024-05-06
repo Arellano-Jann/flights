@@ -81,11 +81,16 @@ class HistoricalDataViewSet(viewsets.ModelViewSet):
     serializer_class = HistoricalDataSerializer
     
 class APIViewSet(viewsets.ViewSet):
+    # Used so that it shows up in DRF routers
+    def list(self, request):
+        return Response()
     
     @action(detail=False, methods=['get'])
     def get_skiplagged_data(self, request):
         skiplagged_api = skiplagged.Skiplagged()
         skiplagged_search = skiplagged_api.search(from_source="LAX")
+        return Response()
+        
         
 
 

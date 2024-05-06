@@ -1,6 +1,7 @@
 # flights
 
-pip3 install networkx matplotlib pandas seaborn
+Get docker compose and then
+`make docker_compose_up`
 
 WRITE A SCRIPT TO BACKFILL IF DATA ISN'T FILLED YET
 
