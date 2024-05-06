@@ -90,25 +90,41 @@ class APIViewSet(viewsets.ViewSet):
     def get_skiplagged_data(self, request):
         skiplagged_api = skiplagged.Skiplagged()
         skiplagged_search = skiplagged_api.search(offset=True)
-        lowest_priced_flights = skiplagged_api.get_lowest_price(3)
+        lowest_priced_flights = skiplagged_api.get_lowest_price(100)
         
         for key, value in lowest_priced_flights.items():
             one_way_price = value.get('one_way_price')
             from_source = value.get('from_source')
-            to_source = value.get('to_source')
+            to_dest = value.get('to_dest')
             date_checked = value.get('date_checked')
             
             airline = value.get('airline')
-            flight_number = value.get('flight_number')
+            flight_numbers = value.get('flight_number')
             flight_date = value.get('flight_date')
-            
         
-        # Airline.objects.get_or_create(iata_code=airline)
-        # Airport.objects.get_or_create()
-        # Aggregator.objects.get_or_create()
-        # Flight.objects.get_or_create()
-        # HistoricalData.objects.get_or_create()
+            Airline.objects.get_or_create(iata_code=airline)
+            Airport.objects.get_or_create(iata_code=from_source)
+            Airport.objects.get_or_create(iata_code=to_dest)
+            Flight.objects.get_or_create(
+                min_cost=one_way_price,
+                max_cost=one_way_price,
+                avg_cost=one_way_price,
+                airline=Airline.objects.get(iata_code=airline),
+                from_airport=Airport.objects.get(iata_code=from_source),
+                to_airport=Airport.objects.get(iata_code=to_dest),
+                date_first_checked=date_checked,
+                date_last_checked=date_checked,
+                date_of_flight=flight_date,
+            )
+            HistoricalData.objects.get_or_create(
+                min_cost=one_way_price,
+                max_cost=one_way_price,
+                avg_cost=one_way_price,
+                date_checked=date_checked,
+                date_of_flight=flight_date,
+            )
         
+        Aggregator.objects.get_or_create(name='Skiplagged')
         
         return Response(lowest_priced_flights)
         
