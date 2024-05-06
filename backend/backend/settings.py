@@ -89,6 +89,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5173', # Svelte (same machine)
     'http://frontend:5173', # Svelte (in Docker)
+    'http://frontend.localhost', # Svelte (in Docker)
 ]
 
 ROOT_URLCONF = "backend.urls"

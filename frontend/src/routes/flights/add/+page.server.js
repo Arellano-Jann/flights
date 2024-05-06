@@ -29,6 +29,6 @@ export const actions = {
         
       const json = await res.json();
       console.log("POST ADD", JSON.stringify(json));
-      redirect(302, 'http://127.0.0.1:5173/');
+      redirect(302, 'http://frontend.localhost/');
     }
   };

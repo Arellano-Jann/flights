@@ -15,7 +15,7 @@
         .then(res => {
             if (res.status == 204){ // hot reloads the table
                 // Flights.update(prev => prev.filter(flight => flight.uuid != uuid))
-                // invalidate('http://127.0.0.1:5173/')
+                // invalidate('http://frontend.localhost/')
                 invalidateAll()
             }
         })
