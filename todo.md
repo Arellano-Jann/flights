@@ -9,7 +9,7 @@
 6. solve best path - (input num of destinations to visit)
 ~~- django models - 5 for the ~~
 ~~- django postgres switch (be able to pg_dump) and docker~~
-- connect skiplaggedAPI - https://stackoverflow.com/questions/63422298/how-do-i-scrape-data-using-selenium-in-python-from-a-webpage-that-adds-div-on-sc
+~~- connect skiplaggedAPI - https://stackoverflow.com/questions/63422298/how-do-i-scrape-data-using-selenium-in-python-from-a-webpage-that-adds-div-on-sc~~
 - connect skyscannerAPI - https://rapidapi.com/ntd119/api/sky-scanner3
 - add airport code db ??? - https://rapidapi.com/leopieters/api/iata-and-icao/
 - add button to pull API info into own DB
@@ -21,6 +21,7 @@ MVP: pull API into DB, aggregate DB, display info on frontend via DRF
 
 - remove sort (actions) in table-data
 - ensure data validation (min cost < max cost) (ints) (error messages, on submit and while filling out)
+- add hidden city validations - https://github.dev/iguanahotsauce/Node_Skiplagged_API/index.js
 
 - (tracker) arrivals and departures by airport: https://openskynetwork.github.io/opensky-api/rest.html#flights-by-aircraft
 - (tracker) 100/month flight tables (to, from, etc) - https://rapidapi.com/flightlookup/api/timetable-lookup/
