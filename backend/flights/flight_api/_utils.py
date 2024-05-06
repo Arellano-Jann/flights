@@ -1,11 +1,17 @@
 from datetime import datetime, timedelta
 
-def todays_date() -> str:
+def todays_date(offset: bool = False) -> str:
     """
     Yields todays date in YYYY-DD-MM format
     """
     # Get today's date
     today = datetime.today().date()
+    
+    if offset:
+        tomorrow = today + timedelta(days=1)
+
+        # Format the future date as yyyy-mm-dd
+        return tomorrow.strftime('%Y-%m-%d')
 
     # Format today's date as yyyy-mm-dd
     formatted_today = today.strftime('%Y-%m-%d')
