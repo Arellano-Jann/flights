@@ -3,6 +3,7 @@
 Get docker compose and then
 `make docker_compose_up`
 backend.localhost is the intended frontend for this project currently
+go to http://backend.localhost/backend/api/get_skiplagged_data/ to fill the data and get the API
 
 WRITE A SCRIPT TO BACKFILL IF DATA ISN'T FILLED YET
 
