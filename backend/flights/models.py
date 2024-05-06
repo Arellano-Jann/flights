@@ -20,7 +20,7 @@ class Airline(models.Model):
 class Airport(models.Model):
     iata_code = models.CharField(primary_key=True, unique=True, max_length=3, help_text="Enter airport's unique IATA code") # Standardized 3 CHAR IATA Code
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="city") # City that Airport is in
-    airline = models.ManyToManyField(Airline, related_name="airline") # Airlines that the airport services.
+    airline = models.ManyToManyField(Airline, related_name="airport_airlines") # Airlines that the airport services.
     
     
 class Aggregator(models.Model):

@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import action
 from rest_framework import status, permissions, viewsets
 from django.contrib.auth.models import User
 from flights.models import (
@@ -22,6 +22,8 @@ from flights.serializers import (
     AggFlightSerializer,
     HistoricalDataSerializer,
     )
+from flights.flight_api import skiplagged
+
     
 class SignUpViewSet(viewsets.ViewSet):
     serializer_class = SignUpSerializer
@@ -77,6 +79,14 @@ class AggFlightViewSet(viewsets.ModelViewSet):
 class HistoricalDataViewSet(viewsets.ModelViewSet):
     queryset = HistoricalData.objects.all()
     serializer_class = HistoricalDataSerializer
+    
+class APIViewSet(viewsets.ViewSet):
+    
+    @action(detail=False, methods=['get'])
+    def get_skiplagged_data(self, request):
+        skiplagged_api = skiplagged.Skiplagged()
+        skiplagged_search = skiplagged_api.search(from_source="LAX")
+        
 
 
 

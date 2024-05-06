@@ -1,5 +1,6 @@
 import requests
-from _utils import todays_date, add_days_to_today
+# from ._utils import todays_date, add_days_to_today
+from flights.flight_api._utils import todays_date, add_days_to_today
 
 # TODO: Create a full-featured API of this
 
@@ -33,7 +34,8 @@ class Skiplagged():
         return_date: str = None,
         adult_count: str = '1',
         child_count: str = '0',
-        sort: str = 'cost' # cost, duration, path
+        sort: str = 'cost', # cost, duration, path
+        one_way: bool = True
     ):
         """_summary_
 
@@ -53,8 +55,10 @@ class Skiplagged():
         """
         if depart_date is None:
             depart_date = todays_date()
-        if return_date is None:
+        if return_date is None and not one_way:
             return_date = add_days_to_today()
+        if one_way:
+            return_date = ''
             
         self.querystring = {
             "from": str(from_source),
@@ -74,11 +78,11 @@ class Skiplagged():
         
         for flight_key in flight_search['itineraries']['outbound']:
             print('-' * 100)
-            print('Flight Number : ', flight_key.get('flight', None))
-            print('Flight Price : ', flight_key.get('one_way_price', 99999))
-            number = flight_key['flight']
-            print('Flight Details : ', flight_search['flights'][number])
-            print('-' * 100) 
+            # print('Flight Number : ', flight_key.get('flight', None))
+            # print('Flight Price : ', flight_key.get('one_way_price', 99999))
+            # number = flight_key['flight']
+            # print('Flight Details : ', flight_search['flights'][number])
+            # print('-' * 100) 
         
         self.query_results = flight_search
         return flight_search

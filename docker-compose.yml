@@ -57,8 +57,7 @@ services:
       # This allows the package manager to work across containers. Of course,
       # this runs a few risks on its own. Ditto for placing things in the media
       # folder.
-      - packages:/app/packages
-      - media:/app/media
+      - ./backend:/app/
     depends_on:
       - "db"
 

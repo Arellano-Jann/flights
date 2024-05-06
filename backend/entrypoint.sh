@@ -14,6 +14,8 @@ then
     echo "PostgreSQL started"
 fi
 
-# make purge
+
+make purge
+make sync
 
 exec "$@"

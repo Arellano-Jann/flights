@@ -16,8 +16,8 @@ run_noreload:
 #
 # In turn, we manually invoke this first.
 migrate:
-	python3 manage.py makemigrations
 	python3 manage.py migrate
+	python3 manage.py makemigrations
 
 test:
 	python3 manage.py test
@@ -38,9 +38,7 @@ flush:
 	python3 manage.py flush --no-input
 
 purge: flush
-	rm db.sqlite3 || true
-	rm -r packages || true
-	rm -r media || true
+	make flush
 	make migrate
 
 admin:
