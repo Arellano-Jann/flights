@@ -3,32 +3,25 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status, permissions, viewsets
 from django.contrib.auth.models import User
-from flights.models import Flight
-from flights.serializers import SignUpSerializer, FlightSerializer
-
-# Create your views here.
-# Users
-# @api_view(['POST'])
-# def signUp(request):
-#     serializer = SignUpSerializer(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#     return Response(data=serializer.data)
-
-# from rest_framework import generics
-# class SignUpView(generics.GenericAPIView):
-#     serializer_class = SignUpSerializer
-#     def post(self, request):
-#         data = request.data
-#         serializer = self.serializer_class(data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             response = {
-#                 "message": "User created",
-#                 "data": serializer.data
-#             }
-#             return Response(data=response, status=status.HTTP_201_CREATED)
-#         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+from flights.models import (
+    City, 
+    Airline,
+    Airport,
+    Aggregator,
+    Flight,
+    AggFlight,
+    HistoricalData,
+    )
+from flights.serializers import (
+    SignUpSerializer,
+    CitySerializer, 
+    AirlineSerializer,
+    AirportSerializer,
+    AggregatorSerializer,
+    FlightSerializer,
+    AggFlightSerializer,
+    HistoricalDataSerializer,
+    )
     
 class SignUpViewSet(viewsets.ViewSet):
     serializer_class = SignUpSerializer
@@ -50,23 +43,42 @@ class SignUpViewSet(viewsets.ViewSet):
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# Citys
+class CityViewSet(viewsets.ModelViewSet):
+    queryset = City.objects.all()
+    serializer_class = CitySerializer
+
+# Airlines
+class AirlineViewSet(viewsets.ModelViewSet):
+    queryset = Airline.objects.all()
+    serializer_class = AirlineSerializer
+
+# Airports
+class AirportViewSet(viewsets.ModelViewSet):
+    queryset = Airport.objects.all()
+    serializer_class = AirportSerializer
+
+# Aggregators
+class AggregatorViewSet(viewsets.ModelViewSet):
+    queryset = Aggregator.objects.all()
+    serializer_class = AggregatorSerializer
+
 # Flights
 class FlightViewSet(viewsets.ModelViewSet):
     queryset = Flight.objects.all()
     serializer_class = FlightSerializer
 
-@api_view(['GET'])
-def flights(request):
-    flights = Agent.objects.all()
-    serializer = FlightSerializer(flights, many=True) # setting to true means to serialize multiple items. False is just one item
-    return Response(serializer.data)
+# AggFlights
+class AggFlightViewSet(viewsets.ModelViewSet):
+    queryset = AggFlight.objects.all()
+    serializer_class = AggFlightSerializer
 
-@api_view(['POST'])
-def addFlight(request):
-    serializer = FlightSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+# HistoricalDatas
+class HistoricalDataViewSet(viewsets.ModelViewSet):
+    queryset = HistoricalData.objects.all()
+    serializer_class = HistoricalDataSerializer
+
+
 
 # # Credentials
 # class CredentialViewSet(viewsets.ModelViewSet):

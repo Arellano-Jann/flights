@@ -6,8 +6,8 @@ from flights.models import (
     Airport,
     Aggregator,
     Flight,
-    Agg_Flight,
-    Historical_Data,
+    AggFlight,
+    HistoricalData,
     )
 from django.contrib.auth.models import User
 
@@ -64,13 +64,13 @@ class FlightSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
         
-class Agg_FlightSerializer(serializers.ModelSerializer):
+class AggFlightSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Agg_Flight
+        model = AggFlight
         fields = '__all__'
 
         
-class Historical_DataSerializer(serializers.ModelSerializer):
+class HistoricalDataSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Historical_Data
+        model = HistoricalData
         fields = '__all__'
