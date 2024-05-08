@@ -70,10 +70,6 @@ services:
       # need to run `make flush` if you want to start over (which occurs in 
       # entrypoint.sh by default).
       - postgres_data:/var/lib/postgresql/data/
-      # This is just here so the entrypoint script can nuke the applicable
-      # directories if needed.
-      - packages:/app/packages
-      - media:/app/media
     environment:
       # Should match some of the relevant keys in .env.
       - POSTGRES_USER=admin
@@ -85,6 +81,7 @@ services:
     #   - "5432"
     networks:
       - proxy
+    command: ["postgres", "-c", "log_statement=all"]
 
   frontend:
     container_name: frontend
